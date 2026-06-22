@@ -53,8 +53,7 @@ class ContactController extends Controller
             'message' => 'required|string|max:255',
         ]);
 
-        DB::beginTransaction();
-
+        // 1) Kayıt her durumda saklanır (mail gönderiminden bağımsız).
         try {
             $contactForm = ContactFormSubmission::create($request->only([
                 'name',
@@ -62,22 +61,23 @@ class ContactController extends Controller
                 'email',
                 'message',
             ]));
-
-            ContactFormSubmissionCreated::dispatch($contactForm);
-
-            Notification::route('mail', $request->email)
-                ->notify(new ContactUsNotification($contactForm));
-
-            DB::commit();
-
-            return redirect()->route('contact.index')->with('success', 'Mesajınızı aldık! En kısa sürede size geri dönüş sağlayacağız.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('İletişim formu kaydedilemedi: '.$e->getMessage());
             flash()->addError('Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.', 'Hata!');
 
             return redirect()->route('contact.index');
         }
 
+        // 2) Bildirim/mail başarısız olsa bile kayıt korunur.
+        try {
+            ContactFormSubmissionCreated::dispatch($contactForm);
+
+            Notification::route('mail', $request->email)
+                ->notify(new ContactUsNotification($contactForm));
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::warning('İletişim formu bildirimi gönderilemedi: '.$e->getMessage());
+        }
+
+        return redirect()->route('contact.index')->with('success', 'Mesajınızı aldık! En kısa sürede size geri dönüş sağlayacağız.');
     }
 }
