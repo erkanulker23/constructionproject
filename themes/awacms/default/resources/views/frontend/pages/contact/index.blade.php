@@ -125,16 +125,19 @@
                         <div class="kal-map-embed">{!! $mapEmbed !!}</div>
                     </div>
                 @else
-                    <div style="position:relative;height:420px;border-radius:16px;overflow:hidden;border:1px solid #E6E0D4;background:linear-gradient(135deg,#2B2926,#3B342D)">
+                    <div style="position:relative;height:300px;border-radius:16px;overflow:hidden;border:1px solid #E6E0D4;background:linear-gradient(135deg,#2B2926,#3B342D);display:flex;align-items:center;justify-content:center">
                         <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(217,119,87,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(217,119,87,.12) 1px,transparent 1px);background-size:34px 34px"></div>
-                        <div style="position:absolute;left:0;top:48%;width:100%;height:16px;background:rgba(217,119,87,.22);transform:rotate(-6deg)"></div>
-                        <div style="position:absolute;left:34%;top:0;width:14px;height:100%;background:rgba(217,119,87,.16)"></div>
-                        <div style="position:absolute;left:34%;top:48%;transform:translate(-50%,-50%)"><span style="display:block;width:20px;height:20px;border-radius:50%;background:#D97757;box-shadow:0 0 0 8px rgba(217,119,87,.28)"></span></div>
-                        <div style="position:absolute;left:26px;bottom:26px;right:26px;background:rgba(255,255,255,.96);border-radius:12px;padding:18px 20px"><div style="font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#D97757">Genel Merkez</div><div style="font-size:15px;font-weight:600;color:#2B2926;margin-top:6px;line-height:1.5">{{ $address }}</div></div>
+                        <div style="position:absolute;left:0;top:50%;width:100%;height:16px;background:rgba(217,119,87,.18);transform:rotate(-5deg)"></div>
+                        <div style="position:absolute;left:38%;top:0;width:14px;height:100%;background:rgba(217,119,87,.14)"></div>
+                        <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:24px">
+                            <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;background:#D97757;color:#fff;font-size:22px;box-shadow:0 0 0 10px rgba(217,119,87,.22)"><i class="fa-solid fa-location-dot"></i></span>
+                            <div style="font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#EAC1AC">Genel Merkez</div>
+                            <div style="font-size:15px;font-weight:600;color:#fff;max-width:34ch;line-height:1.5">{{ $address }}</div>
+                        </div>
                     </div>
                 @endif
 
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px" class="kal-split">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
                     @if($workingHours)
                     <div style="padding:24px;border:1px solid #E6E0D4;border-radius:14px;background:#fff">
                         <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:18px;border-radius:10px"><i class="fa-regular fa-clock"></i></div>
