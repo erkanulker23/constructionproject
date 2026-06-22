@@ -120,6 +120,16 @@ Route::localized(function () {
 
     require __DIR__.'/service.php';
     require __DIR__.'/blog.php';
+
+    // Projeler
+    Route::get('projeler', [\App\Http\Controllers\Frontend\ProjectController::class, 'index'])
+        ->name('projects.index');
+    Route::get('projeler/{project:slug}', [\App\Http\Controllers\Frontend\ProjectController::class, 'show'])
+        ->name('projects.show');
+
+    // Kataloglar
+    Route::get('kataloglar', [\App\Http\Controllers\Frontend\CatalogController::class, 'index'])
+        ->name('catalogs.index');
 });
 
 // Form Routes

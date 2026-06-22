@@ -88,3 +88,35 @@ if (! function_exists('safe_general_settings')) {
         }
     }
 }
+if (! function_exists('kalyon_settings')) {
+    /**
+     * GeneralSettings örneğini güvenli şekilde döndürür (yoksa null).
+     */
+    function kalyon_settings()
+    {
+        try {
+            return app(\App\Settings\GeneralSettings::class);
+        } catch (\Throwable $e) {
+            return null;
+        }
+    }
+}
+
+if (! function_exists('kalyon_setting')) {
+    /**
+     * GeneralSettings'ten bir alanı, boşsa verilen varsayılanı döndürür.
+     */
+    function kalyon_setting($key, $default = null)
+    {
+        $s = kalyon_settings();
+        if (! $s) {
+            return $default;
+        }
+        try {
+            $val = $s->{$key} ?? null;
+        } catch (\Throwable $e) {
+            return $default;
+        }
+        return ($val === null || $val === '') ? $default : $val;
+    }
+}

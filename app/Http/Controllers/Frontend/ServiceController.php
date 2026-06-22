@@ -127,7 +127,7 @@ class ServiceController extends Controller
 
             ->twitterImage($servicePost->listingImage ?? '/')
             ->twitterSite($generalSettings->site_name)
-            ->twitterTitle($servicePost->seo_title ?? $post->title)
+            ->twitterTitle($servicePost->seo_title ?? $servicePost->title)
             ->twitterDescription($servicePost->seo_description ?? '');
 
         $servicePostingScript = Schema::blogPosting()

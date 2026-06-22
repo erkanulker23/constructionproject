@@ -2,186 +2,189 @@
 
 @push('metas')
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Bizimle iletişime geçin. Sorularınız, önerileriniz ve talepleriniz için 7/24 hizmetinizdeyiz.">
-    <meta name="keywords" content="iletişim, contact, adres, telefon, e-posta">
+    <meta name="description" content="Bizimle iletişime geçin. Sorularınız, önerileriniz ve teklif talepleriniz için en kısa sürede size dönüş yapıyoruz.">
+    <meta name="keywords" content="iletişim, contact, adres, telefon, e-posta, Kalyon İnşaat">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="İletişim">
-    <meta property="og:description" content="Bizimle iletişime geçin. 7/24 hizmetinizdeyiz.">
+    <meta property="og:description" content="Bizimle iletişime geçin. Projeniz için en kısa sürede size dönüş yapıyoruz.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
 @endpush
 
 @section('content')
+@php
+    $phone         = kalyon_setting('phone', '+90 212 000 00 00');
+    $email         = kalyon_setting('email', 'info@kalyoninsaat.com');
+    $address       = kalyon_setting('address', 'Maslak, Sarıyer, İstanbul, Türkiye');
+    $whatsapp      = kalyon_setting('whatsapp');
+    $workingHours  = kalyon_setting('working_hours', 'Pzt – Cuma · 09:00 – 18:00');
+    $mapEmbed      = kalyon_setting('address_google_maps_embed');
+    $phoneHref     = preg_replace('/[^0-9+]/', '', $phone);
+    $whatsappHref  = $whatsapp ? preg_replace('/[^0-9]/', '', $whatsapp) : null;
+@endphp
 
-<!-- Hero Section -->
-<section class="service-hero-new">
-    <picture>
-        <source media="(max-width: 768px)" srcset="{{ $heroImageMobile }}">
-        <img src="{{ $heroImage }}"
-        alt="İletişim görseli"
-        loading="lazy"
-        class="service-hero-bg">
-    </picture>
-    <div class="container">
-      <div class="service-hero-content">
-        <div class="service-hero-text">
-          <h1 class="service-title">Bizimle İletişime Geçin</h1>
-          <p style="color: #fff; font-size: 1.1rem; margin-top: 10px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);">Sorularınızı yanıtlamak veya destek sağlamak için hemen bize ulaşın!</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<div style="font-family:'Manrope',system-ui,sans-serif;color:#1F1C18;background:#fff">
 
+    @include('frontend.partials.page-hero', [
+        'eyebrow' => 'İletişim',
+        'title' => 'Projenizi birlikte konuşalım',
+        'subtitle' => 'Yeni bir proje, iş birliği veya teklif talebi — ekibimiz en kısa sürede size dönüş yapar.',
+        'breadcrumbs' => ['İletişim' => null],
+    ])
 
-
-  <section class="newcontact-main contact-main-mobile">
-    <div class="container">
-      <div class="row">
-        <!-- Contact Info and Map -->
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <div class="newcontact-info-container">
-            <div class="newcontact-info">
-              <h2 class="mb-4" style="font-size: 1.5rem; font-weight: 600;">İletişim Bilgilerimiz</h2>
-              <div class="newcontact-info-item">
-                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                <div>
-                  <strong>Adres:</strong>
-                  <p>{{ $generalSettings->address }}</p>
+    {{-- HIZLI İLETİŞİM KARTLARI --}}
+    <section style="background:#fff;position:relative;z-index:5;margin-top:-44px">
+        <div class="kal-pad" style="max-width:1340px;margin:0 auto;padding:0 52px">
+            <div class="kal-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+                <div data-reveal style="opacity:0;background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:30px 28px;box-shadow:0 18px 44px rgba(43,41,38,.07)">
+                    <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:20px;border-radius:11px;margin-bottom:18px">✆</div>
+                    <div style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">Telefon</div>
+                    <a href="tel:{{ $phoneHref }}" style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:18px;color:#2B2926;margin-top:5px;display:block;text-decoration:none;transition:color .3s" style-hover="color:#D97757">{{ $phone }}</a>
                 </div>
-              </div>
-              <div class="newcontact-info-item">
-                <i class="fas fa-envelope" aria-hidden="true"></i>
-                <div>
-                  <strong>E-posta:</strong>
-                  <p><a href="mailto:{{ $generalSettings->email }}" aria-label="E-posta gönder">{{ $generalSettings->email }}</a></p>
+                <div data-reveal data-rd="0.06" style="opacity:0;background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:30px 28px;box-shadow:0 18px 44px rgba(43,41,38,.07)">
+                    <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:20px;border-radius:11px;margin-bottom:18px">✉</div>
+                    <div style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">E-posta</div>
+                    <a href="mailto:{{ $email }}" style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:18px;color:#2B2926;margin-top:5px;display:block;text-decoration:none;word-break:break-word;transition:color .3s" style-hover="color:#D97757">{{ $email }}</a>
                 </div>
-              </div>
-              <div class="newcontact-info-item">
-                <i class="fas fa-phone" aria-hidden="true"></i>
-                <div>
-                  <strong>Telefon:</strong>
-                  <p><a href="tel:{{ $generalSettings->phone }}" aria-label="Telefon ile ara">{{ $generalSettings->phone }}</a></p>
+                <div data-reveal data-rd="0.12" style="opacity:0;background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:30px 28px;box-shadow:0 18px 44px rgba(43,41,38,.07)">
+                    <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:20px;border-radius:11px;margin-bottom:18px">⌖</div>
+                    <div style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">Adres</div>
+                    <div style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:15.5px;color:#2B2926;margin-top:5px;line-height:1.5">{{ $address }}</div>
                 </div>
-              </div>
-              <div class="newcontact-info-item">
-                <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                <div>
-                  <strong>WhatsApp:</strong>
-                  <p><a href="https://wa.me/{{ $generalSettings->whatsapp }}" aria-label="WhatsApp ile mesaj gönder">{{ $generalSettings->whatsapp }}</a></p>
+                <div data-reveal data-rd="0.18" style="opacity:0;background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:30px 28px;box-shadow:0 18px 44px rgba(43,41,38,.07)">
+                    <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:20px;border-radius:11px;margin-bottom:18px">⌚</div>
+                    <div style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">Çalışma Saatleri</div>
+                    <div style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:16px;color:#2B2926;margin-top:5px;line-height:1.5">{{ $workingHours }}</div>
                 </div>
-              </div>
-              @if(isset($generalSettings->address_google_maps_url) && $generalSettings->address_google_maps_url)
-              <div class="newcontact-info-item">
-                <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
-                <div>
-                  <strong>Haritada Görüntüle:</strong>
-                  <p><a href="{{ $generalSettings->address_google_maps_url }}" target="_blank" rel="noopener noreferrer" aria-label="Google Maps'te konumumuzu görüntüle">Google Maps'te Aç</a></p>
-                </div>
-              </div>
-              @endif
             </div>
-            <div class="newcontact-map">
-              @if(isset($generalSettings->address_google_maps_embed) && $generalSettings->address_google_maps_embed)
-                {!! $generalSettings->address_google_maps_embed !!}
-              @else
-                @php
-                  $latitude = $generalSettings->address_latitude ?? '41.008237979299';
-                  $longitude = $generalSettings->address_longitude ?? '28.978358315209';
-                  $mapEmbedUrl = "https://maps.google.com/maps?q={$latitude},{$longitude}&hl=tr&z=15&output=embed";
-                @endphp
-                <iframe src="{{ $mapEmbedUrl }}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Konum haritası"></iframe>
-              @endif
-            </div>
-          </div>
         </div>
-        <!-- Contact Form -->
-        <div class="col-lg-6">
-          <div class="newcontact-form-container">
-            <div class="newcontact-form">
-              <p>Yardıma mı ihtiyacınız var? Aşağıdaki formu doldurarak bize ulaşabilirsiniz.</p>
-              @if(session('flash_notification'))
-                        <div class="alert alert-{{ session('flash_notification.level') }} alert-dismissible fade show" role="alert">
-                            <strong>{{ session('flash_notification.title') }}</strong><br>
-                            {{ session('flash_notification.message') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Kapat"></button>
-                        </div>
-                    @endif
-                    @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Kapat"></button>
-                        </div>
-                    @endif
-                    @if(session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Kapat"></button>
-                        </div>
-                    @endif
-            <form action="{{ route('contact.store') }}" method="post" class="contact-form-style-03">
-            @honeypot
-            @csrf
-                <div class="form-group">
-                  <input type="text" class="form-control" name="name" value="{{ old('name') }}"  id="name" placeholder="" required>
-                  <label for="name" class="form-label">Adınız Soyadınız</label>
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" id="email"  name="email" value="{{ old('email') }}" placeholder=" " required>
-                  <label for="email" class="form-label">E-posta Adresiniz</label>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" placeholder=" " required>
-                  <label for="phone" class="form-label">Telefon Numaranız</label>
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control" id="message"  name="message" rows="4"  placeholder=" " required>{{ old('message') }}</textarea>
-                  <label for="message" class="form-label" >Mesajınız</label>
+    </section>
 
-                </div>
-                <div class="text-end">
-                  <button type="submit" class="btn btn-submit">Mesaj Gönder</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    {{-- FORM + DETAY --}}
+    <section class="kal-section" style="background:#fff;padding:80px 0 110px">
+        <div class="kal-pad kal-split" style="max-width:1340px;margin:0 auto;padding:0 52px;display:grid;grid-template-columns:1.2fr 1fr;gap:54px;align-items:start">
 
-@if(count($branches) > 0)
-<section class="pt-3 sm-pt-50px branches-section-mobile">
-    <div class="container">
-        <h2 class="text-dark-gray fs-25px fw-700">Şubelerimiz</h2>
-        <div class="row justify-content-center">
-            <div class="col-xl-12 col-lg-8 col-md-10">
-                <div class="row row-cols-1"
-                data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'>
-                    <!-- start services box item -->
-                    @foreach($branches as $branch)
-                    <div class="col-lg-4 col-md-6 col-sm-12 services-box-style-02 mb-30px">
-                        <div class="bg-white box-shadow-extra-large p-40px xl-p-30px">
-                            <div class="services-box-content last-paragraph-no-margin">
-                                <span class="d-block text-dark-gray primary-font fw-700 fs-19 mb-10px">{{ $branch->name }}</span>
-                                <p style="margin: 0px"><i class="feather icon-feather-map-pin align-middle icon-small p-10px text-base-color"></i>{{ $branch->address }}</p>
-                                <p style="margin: 0px"><i class="ti-map-alt align-middle icon-small p-10px text-base-color"></i>{{ $branch->country }} / {{ $branch->city }} </p>
-                                <i class="ti-mobile align-middle icon-small p-10px text-base-color"></i>{{ $branch->whatsapp }}<br>
-                                <i class="feather icon-feather-phone-call align-middle icon-small p-10px text-base-color"></i> {{ $branch->fax }} <br>
-                                <i class="feather icon-feather-send align-middle icon-small p-10px  text-base-color"></i> {{ $branch->email }}
-                            </div>
-                            <a href="{{ $branch->link }}" class="fs-16 lh-20 primary-font fw-500
-                                text-dark-gray text-decoration-line-bottom d-inline-block mb-25px">Haritada Görüntüle</a>
+            {{-- FORM --}}
+            <div data-reveal style="opacity:0">
+                @if(session('success'))
+                    <div style="display:flex;align-items:flex-start;gap:12px;background:#E8F5EF;border:1px solid #BFE4D4;border-radius:12px;padding:16px 20px;margin-bottom:22px">
+                        <span style="flex:none;width:24px;height:24px;display:flex;align-items:center;justify-content:center;background:#1F9D6B;color:#fff;border-radius:50%;font-size:13px;font-weight:700">✓</span>
+                        <span style="font-size:14.5px;line-height:1.55;color:#1F6B4B;font-weight:600">{{ session('success') }}</span>
+                    </div>
+                @endif
+                @if(session('error'))
+                    <div style="display:flex;align-items:flex-start;gap:12px;background:#FBEDEA;border:1px solid #F1C9BF;border-radius:12px;padding:16px 20px;margin-bottom:22px">
+                        <span style="flex:none;width:24px;height:24px;display:flex;align-items:center;justify-content:center;background:#D63A3A;color:#fff;border-radius:50%;font-size:13px;font-weight:700">!</span>
+                        <span style="font-size:14.5px;line-height:1.55;color:#B23A2B;font-weight:600">{{ session('error') }}</span>
+                    </div>
+                @endif
+
+                <form action="{{ route('contact.store') }}" method="post" style="display:flex;flex-direction:column;gap:20px;background:#fff;border:1px solid #E6E0D4;border-radius:16px;padding:44px 40px;box-shadow:0 20px 50px rgba(43,41,38,.05)">
+                    @csrf
+                    <x-honeypot />
+
+                    <h2 style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:26px;color:#2B2926;letter-spacing:-.01em">Bize yazın</h2>
+                    <p style="font-size:14.5px;line-height:1.6;color:#6A6358;margin-top:-8px">Aşağıdaki formu doldurun, ekibimiz en kısa sürede sizinle iletişime geçsin.</p>
+
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px" class="kal-split">
+                        <div style="display:flex;flex-direction:column;gap:8px">
+                            <label for="name" style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">Ad Soyad</label>
+                            <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Adınız Soyadınız" required style="padding:14px 16px;border:1px solid #E6E0D4;border-radius:9px;font-size:15px;color:#1F1C18;background:#fff;transition:border-color .3s">
+                            @error('name')<span style="font-size:12.5px;color:#D63A3A;font-weight:600">{{ $message }}</span>@enderror
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:8px">
+                            <label for="phone" style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">Telefon</label>
+                            <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="05__ ___ __ __" required style="padding:14px 16px;border:1px solid #E6E0D4;border-radius:9px;font-size:15px;color:#1F1C18;background:#fff;transition:border-color .3s">
+                            @error('phone')<span style="font-size:12.5px;color:#D63A3A;font-weight:600">{{ $message }}</span>@enderror
                         </div>
                     </div>
-                    @endforeach
+
+                    <div style="display:flex;flex-direction:column;gap:8px">
+                        <label for="email" style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">E-posta</label>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="ornek@firma.com" required style="padding:14px 16px;border:1px solid #E6E0D4;border-radius:9px;font-size:15px;color:#1F1C18;background:#fff;transition:border-color .3s">
+                        @error('email')<span style="font-size:12.5px;color:#D63A3A;font-weight:600">{{ $message }}</span>@enderror
+                    </div>
+
+                    <div style="display:flex;flex-direction:column;gap:8px">
+                        <label for="message" style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">Mesajınız</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Bize projenizden bahsedin…" required style="padding:14px 16px;border:1px solid #E6E0D4;border-radius:9px;font-size:15px;color:#1F1C18;background:#fff;resize:vertical;transition:border-color .3s">{{ old('message') }}</textarea>
+                        @error('message')<span style="font-size:12.5px;color:#D63A3A;font-weight:600">{{ $message }}</span>@enderror
+                    </div>
+
+                    <button type="submit" style="align-self:flex-start;display:inline-flex;align-items:center;gap:12px;background:#D97757;color:#fff;font-weight:700;font-size:14px;letter-spacing:.4px;padding:18px 36px;border:none;border-radius:9px;cursor:pointer;transition:all .35s cubic-bezier(.16,1,.3,1)" style-hover="background:#C2603F;transform:translateY(-3px);box-shadow:0 16px 40px rgba(217,119,87,.3)">Mesajı Gönder <span style="font-size:16px">→</span></button>
+                </form>
+            </div>
+
+            {{-- DETAY / HARİTA --}}
+            <div data-reveal data-rd="0.1" style="opacity:0;display:flex;flex-direction:column;gap:18px">
+                @if($mapEmbed)
+                    <div style="position:relative;min-height:240px;border-radius:16px;overflow:hidden;border:1px solid #E6E0D4;background:#F0EAE0">
+                        <style>.kal-map-embed iframe{width:100%;height:100%;min-height:240px;border:0;display:block}</style>
+                        <div class="kal-map-embed" style="position:absolute;inset:0">{!! $mapEmbed !!}</div>
+                    </div>
+                @else
+                    <div style="position:relative;height:240px;border-radius:16px;overflow:hidden;border:1px solid #E6E0D4;background:linear-gradient(135deg,#2B2926,#3B342D)">
+                        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(217,119,87,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(217,119,87,.12) 1px,transparent 1px);background-size:30px 30px"></div>
+                        <div style="position:absolute;left:0;top:46%;width:100%;height:14px;background:rgba(217,119,87,.25);transform:rotate(-8deg)"></div>
+                        <div style="position:absolute;left:30%;top:0;width:12px;height:100%;background:rgba(217,119,87,.18)"></div>
+                        <div style="position:absolute;left:calc(30% + 6px);top:46%;transform:translate(-50%,-50%)"><span style="display:block;width:18px;height:18px;border-radius:50%;background:#D97757;box-shadow:0 0 0 6px rgba(217,119,87,.3)"></span></div>
+                        <div style="position:absolute;left:20px;bottom:18px;background:rgba(255,255,255,.95);border-radius:10px;padding:12px 16px;max-width:78%"><div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#D97757">Genel Merkez</div><div style="font-size:14px;font-weight:600;color:#2B2926;margin-top:2px;line-height:1.4">{{ $address }}</div></div>
+                    </div>
+                @endif
+
+                <div style="display:flex;gap:18px;padding:24px;border:1px solid #E6E0D4;border-radius:14px;background:#fff">
+                    <div style="flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:18px;border-radius:10px">⌖</div>
+                    <div>
+                        <div style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">Adres</div>
+                        <div style="font-size:16px;font-weight:600;color:#2B2926;margin-top:5px;line-height:1.5">{{ $address }}</div>
+                    </div>
                 </div>
+
+                <div style="display:flex;gap:18px;padding:24px;border:1px solid #E6E0D4;border-radius:14px;background:#fff">
+                    <div style="flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:18px;border-radius:10px">✆</div>
+                    <div>
+                        <div style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">Telefon &amp; E-posta</div>
+                        <a href="tel:{{ $phoneHref }}" style="display:block;font-size:16px;font-weight:600;color:#2B2926;margin-top:5px;text-decoration:none;transition:color .3s" style-hover="color:#D97757">{{ $phone }}</a>
+                        <a href="mailto:{{ $email }}" style="display:block;font-size:15px;font-weight:600;color:#5A5349;margin-top:3px;text-decoration:none;word-break:break-word;transition:color .3s" style-hover="color:#D97757">{{ $email }}</a>
+                    </div>
+                </div>
+
+                @if($whatsappHref)
+                    <a href="https://wa.me/{{ $whatsappHref }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:17px;background:#1F9D6B;color:#fff;font-weight:700;font-size:14.5px;border-radius:12px;text-decoration:none;transition:all .3s" style-hover="background:#198257;transform:translateY(-2px)">✆ WhatsApp ile Yazın</a>
+                @endif
             </div>
         </div>
-    </div>
-</section>
-@endif
+    </section>
 
+    @if(count($branches) > 0)
+    {{-- ŞUBELER --}}
+    <section class="kal-section" style="background:#F4EFE7;padding:90px 0">
+        <div class="kal-pad" style="max-width:1340px;margin:0 auto;padding:0 52px">
+            <div style="display:flex;align-items:center;gap:13px;margin-bottom:22px"><span style="width:34px;height:1px;background:#D97757"></span><span style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#D97757">Ofislerimiz</span></div>
+            <h2 style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:clamp(26px,2.8vw,42px);color:#2B2926;margin-bottom:36px">Şubelerimiz</h2>
+            <div class="kal-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+                @foreach($branches as $i => $branch)
+                    <div data-reveal data-rd="{{ ($i % 3) * 0.08 }}" style="opacity:0;background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:30px 28px">
+                        <h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:19px;color:#2B2926;margin-bottom:14px">{{ $branch->name }}</h3>
+                        <div style="display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.55;color:#5A5349">
+                            @if($branch->address)<div>⌖ {{ $branch->address }}</div>@endif
+                            @if($branch->country || $branch->city)<div>📍 {{ trim(($branch->country ?? '') . ' / ' . ($branch->city ?? ''), ' /') }}</div>@endif
+                            @if($branch->whatsapp)<div>✆ {{ $branch->whatsapp }}</div>@endif
+                            @if($branch->fax)<div>☎ {{ $branch->fax }}</div>@endif
+                            @if($branch->email)<div>✉ {{ $branch->email }}</div>@endif
+                        </div>
+                        @if($branch->link)
+                            <a href="{{ $branch->link }}" target="_blank" rel="noopener" style="display:inline-block;margin-top:18px;font-size:13.5px;font-weight:700;color:#D97757;text-decoration:none;border-bottom:2px solid #D97757;padding-bottom:4px">Haritada Görüntüle →</a>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
+</div>
 @endsection
 
 @push('scripts')

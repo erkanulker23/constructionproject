@@ -18,3 +18,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# Proje arşivi / yerel
+insaat.zip
+.DS_Store

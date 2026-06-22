@@ -1,152 +1,56 @@
-# AWACMS
+# Kalyon İnşaat — Kurumsal Web Sitesi & CMS
 
-## Installation
+İnşaat firması için Laravel 10 + Filament 3 tabanlı, yönetilebilir kurumsal web sitesi.
+Temel altyapı [AWA-CMS](https://github.com/Biostate/AWA-CMS) üzerine kurulmuş; frontend tamamen
+"Kalyon İnşaat" tasarımıyla yeniden giydirilmiş ve inşaat sektörüne özel içerik tipleri eklenmiştir.
 
-Windows/Laragon: enable sqlite3 and pdo_sqlite extensions and restart Apache.
-Linux/Ubuntu: sudo apt install php8.2-sqlite3 and restart Apache
-Enable: GMP Extension in PHP
+## Özellikler
+
+**Frontend (Kalyon teması)** — Plus Jakarta Sans + Manrope, coral (#D97757) / koyu (#2B2926) paleti:
+- Ana sayfa (hero slider, hakkımızda, hizmetler, projeler, sürdürülebilirlik, haberler, referanslar, iletişim CTA)
+- Projeler listesi + filtre + proje detay (künye, galeri, diğer projeler)
+- Kataloglar (PDF indirme)
+- Hizmetler listesi + detay
+- Haberler/Blog listesi + detay (yorumlar)
+- Hakkımızda (statik sayfa) + İletişim (form)
+- Tamamen responsive, mobil menü
+
+**Admin Panel** (`/admin`, Filament 3) — Projeler, Kataloglar, Hizmetler, Haberler, Sayfalar,
+Slider, Menü, Referanslar, SSS, Galeri, Google Yorumları, Genel Ayarlar.
+
+**Eklenen içerik tipleri:** `Project` (Projeler) ve `Catalog` (Kataloglar) modelleri + Filament
+resource'ları + frontend controller/route'ları. Hizmetler ve Haberler çekirdek AWA-CMS modelleridir.
+
+## Kurulum
 
 ```bash
-git clone ...
-cd awacms
+composer install
+npm install
 cp .env.example .env
-composer i
+php artisan key:generate
+
+# .env içinde MySQL bağlantısını ayarla, ardından:
+php artisan migrate --seed
+php artisan db:seed --class=DemoContentSeeder   # (opsiyonel) demo içerik + görseller
+php artisan storage:link
+npm run build
 ```
 
-## Forge Deploy Script
-1. Open OPCache settings and enable OPCache
-2. Open PHP settings and enable GMP extension
-3. Open Nginx settings and enable HTTP/2
-4. 
-```bash
-git checkout package-lock.json
-git pull origin $FORGE_SITE_BRANCH
+Admin kullanıcısı oluşturmak için: `php artisan make:filament-user` (ardından `superadmin` ve `admin`
+rollerini atayın) veya bir seeder kullanın.
 
-$FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
-
-( flock -w 10 9 || exit 1
-    echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
-
-if [ -f artisan ]; then
-    $FORGE_PHP artisan migrate --force
-    npm install
-    npm run build-all
-    $FORGE_PHP artisan cache:clear
-    $FORGE_PHP artisan view:clear
-    $FORGE_PHP artisan queue:restart
-    $FORGE_PHP artisan icons:cache
-    $FORGE_PHP artisan optimize
-    $FORGE_PHP artisan filament:cache-components
-fi
-```
-
-## Development 
-
-You can use these commands to start the project.
+## Geliştirme
 
 ```bash
-npm i
-npm run dev
-composer i
-php artisan migrate:fresh --seed
+npm run dev          # Vite
+php artisan serve    # veya Laravel Valet (.test domaini)
 ```
 
-## CSS & JS Minification
+## Teknik Notlar
 
-Proje production ortamında otomatik CSS ve JS minify sistemi kullanır. Detaylı bilgi için `MINIFY_KULLANIM.md` dosyasına bakın.
-
-### Hızlı Komutlar
-
-```bash
-# Development ortamında
-npm run dev
-
-# Production build (Vite + Minify)
-npm run build-all
-
-# Sadece tema assets minify
-npm run minify-theme
-
-# Sadece CSS minify
-npm run minify-theme-css
-
-# Sadece JS minify
-npm run minify-theme-js
-```
-
-### Blade Template Kullanımı
-
-```blade
-{{-- CSS --}}
-<link rel="stylesheet" href="{{ theme_asset_minified('css/style.css', true) }}" />
-
-{{-- JS --}}
-<script src="{{ theme_asset_minified('js/app.js', true) }}"></script>
-```
-
-Production ortamında (APP_ENV=production) otomatik olarak `.min.css` ve `.min.js` dosyaları yüklenir.
-
-## Menu
-
-If you want to make a menu, you can do it in the admin panel. Also you can add properties to menu items for make item as mega menu.
-
-## S3 Bucket
-
-There is documentation of AWS in the Notion.
-
-You have to add these lines to your bucket policy and cors.
-Policy:
-```
-{
-    "Version": "2008-10-17",
-    "Id": "Policy1380877762691",
-    "Statement": [
-        {
-            "Sid": "Stmt1380877761162",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "*"
-            },
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::awa-local/*"
-        }
-    ]
-}
-```
-
-CORS:
-```
-[
-    {
-        "AllowedHeaders": [
-            "*"
-        ],
-        "AllowedMethods": [
-            "GET",
-            "HEAD",
-            "PUT"
-        ],
-        "AllowedOrigins": [
-            "http://awapanel.dev",
-            "https://awapanel.dev",
-            "https://www.awapanel.dev",
-            "https://test.awapanel.com",
-            "https://www.test.awapanel.com"
-        ],
-        "ExposeHeaders": [
-            "Access-Control-Allow-Origin"
-        ]
-    }
-]
-```
-
-## HSTS Header
-
-add this line to add hsts support to your website.
-
-```diff
-add_header X-Frame-Options "SAMEORIGIN";
-add_header X-XSS-Protection "1; mode=block";
-add_header X-Content-Type-Options "nosniff";
-+ add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
-```
+- Frontend tema dizini: `themes/awacms/default/resources/views/frontend/`
+- Kalyon stilleri/JS: `themes/awacms/default/public/css/kalyon.css`, `.../js/kalyon.js`
+  (scroll-reveal, sayaç, hero slider, proje filtresi, mobil menü, `style-hover` runtime).
+- İç sayfa hero'su: `frontend/partials/page-hero.blade.php` (yeniden kullanılabilir).
+- Site ayarları (telefon, e-posta, adres, sosyal medya) admin → Genel Ayarlar'dan yönetilir;
+  view'larda `kalyon_setting('phone', 'fallback')` helper'ı ile okunur.
