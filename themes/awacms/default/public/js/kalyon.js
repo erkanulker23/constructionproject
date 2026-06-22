@@ -167,9 +167,21 @@
     });
   }
 
+  /* ---- transparan header → scroll'da katı ---- */
+  function initHeaderScroll() {
+    var header = document.querySelector('[data-header]');
+    if (!header) return;
+    function onScroll() {
+      if (window.scrollY > 30) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   function init() {
     initHover(); initReveal(); initCounters(); initBars();
-    initHero(); initFilter(); initFaq(); initMobileMenu();
+    initHero(); initFilter(); initFaq(); initMobileMenu(); initHeaderScroll();
   }
 
   if (document.readyState === 'loading') {

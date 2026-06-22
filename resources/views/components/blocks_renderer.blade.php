@@ -111,6 +111,10 @@
                 <x-service-category-slider-section :data="$section['data']" />
                 @break
 
+            @case("projects_section")
+                <x-projects-section :data="$section['data']" />
+                @break
+
             @default
                 <div class="alert alert-danger text-center fw-bold">
                     <h3>{{ $section["type"] }} is not supported or not found.</h3>

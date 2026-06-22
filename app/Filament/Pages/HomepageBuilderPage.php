@@ -80,6 +80,7 @@ class HomepageBuilderPage extends Page implements HasForms
         $newsletterFormViewList = $this->getViewList('frontend/components/newsletter_form_section');
         $requestFormViewList = $this->getViewList('frontend/components/request_form_section');
         $aboutUsViewList = $this->getViewList('frontend/components/about_us_section');
+        $projectsViewList = $this->getViewList('frontend/components/projects_section');
         $topbarViewList = $this->getViewList('frontend/components/topbar');
         $googleReviewsViewList = $this->getViewList('frontend/components/google_reviews_section');
 
@@ -775,6 +776,41 @@ class HomepageBuilderPage extends Page implements HasForms
                                                     ->label('Başlık')
                                                     ->required(),
                                             ]),
+                                    ]),
+                                Block::make('projects_section')
+                                    ->label('Projeler')
+                                    ->columns(2)
+                                    ->schema([
+                                        TextInput::make('eyebrow')
+                                            ->label('Üst Etiket')
+                                            ->default('Projelerimiz'),
+                                        TextInput::make('section_title')
+                                            ->label('Başlık')
+                                            ->default('Hayata geçirdiğimiz eserler'),
+                                        TextInput::make('section_subtitle')
+                                            ->label('Alt Başlık'),
+                                        Select::make('view_variant')
+                                            ->label('Görünüm')
+                                            ->options($projectsViewList)
+                                            ->required()
+                                            ->default('variant_1'),
+                                        TextInput::make('limit')
+                                            ->label('Gösterilecek Proje Sayısı')
+                                            ->numeric()
+                                            ->default(6),
+                                        Checkbox::make('only_featured')
+                                            ->label('Sadece Öne Çıkanlar'),
+                                        Checkbox::make('show_filter')
+                                            ->label('Kategori Filtresini Göster')
+                                            ->default(true),
+                                        TextInput::make('button_text')
+                                            ->label('Buton Yazısı')
+                                            ->default('Tüm Projeler'),
+                                        TextInput::make('button_url')
+                                            ->label('Buton Linki')
+                                            ->placeholder('Boş bırakılırsa /projeler'),
+                                        ColorPicker::make('bg_color')
+                                            ->label('Arkaplan Rengi'),
                                     ]),
                                 Block::make('operations_section')
                                     ->label('Operasyon Aşamaları')

@@ -11,19 +11,19 @@
     $logo = kalyon_setting('header_logo');
 @endphp
 
-<header class="kal-header" style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 52px;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-bottom:1px solid #E8E2D7">
+<header class="kal-header" data-header style="z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 52px">
     <a href="{{ route('home') }}" style="display:flex;align-items:center;gap:12px;text-decoration:none">
         @if($logo)
             <img src="{{ \Illuminate\Support\Facades\Storage::url($logo) }}" alt="{{ $siteName }}" style="height:40px;width:auto">
         @else
-            <span style="display:inline-flex;width:42px;height:42px;align-items:center;justify-content:center;border:1.5px solid #2B2926;color:#2B2926;font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px">K</span>
-            <span style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:18px;letter-spacing:2px;color:#2B2926">KALYON <span style="color:#D97757">İNŞAAT</span></span>
+            <span class="kal-logo-box" style="display:inline-flex;width:42px;height:42px;align-items:center;justify-content:center;border:1.5px solid #fff;font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px">K</span>
+            <span class="kal-logo-text" style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:18px;letter-spacing:2px">KALYON <span class="kal-logo-accent">İNŞAAT</span></span>
         @endif
     </a>
 
     <nav class="kal-desktop-nav" style="display:flex;align-items:center;gap:30px">
         @foreach($navLinks as $link)
-            <a href="{{ $link['url'] }}" style="font-size:16.5px;font-weight:600;color:#48433B;text-decoration:none;transition:color .3s" style-hover="color:#D97757">{{ $link['label'] }}</a>
+            <a class="kal-nav-link" href="{{ $link['url'] }}" style="font-size:16.5px;font-weight:600;text-decoration:none">{{ $link['label'] }}</a>
         @endforeach
         <a href="{{ route('contact.index') }}" style="display:inline-flex;align-items:center;gap:11px;font-size:15px;font-weight:700;color:#fff;background:linear-gradient(135deg,#E08366,#C2603F);padding:13px 14px 13px 26px;border-radius:40px;text-decoration:none;box-shadow:0 8px 22px rgba(217,119,87,.35);transition:all .35s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-2px);box-shadow:0 14px 32px rgba(217,119,87,.5)">
             İletişime Geç

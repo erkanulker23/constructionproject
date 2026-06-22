@@ -46,3 +46,32 @@ input:focus, textarea:focus { outline: none; border-color: #D97757 !important; }
   .kal-stat-grid { grid-template-columns: 1fr 1fr !important; }
   h1 { font-size: clamp(38px, 11vw, 60px) !important; }
 }
+
+/* ====== TRANSPARAN HEADER (hero üzerinde) ====== */
+.kal-header {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  transition: background .4s ease, border-color .4s ease, box-shadow .4s ease, padding .4s ease;
+}
+.kal-header.scrolled {
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #E8E2D7;
+  box-shadow: 0 6px 30px rgba(43,41,38,.07);
+  padding-top: 12px; padding-bottom: 12px;
+}
+/* nav linkleri: üstte beyaz, scroll'da koyu */
+.kal-nav-link { color: #fff; transition: color .3s; }
+.kal-header.scrolled .kal-nav-link { color: #48433B; }
+.kal-nav-link:hover { color: #E0A488; }
+.kal-header.scrolled .kal-nav-link:hover { color: #D97757; }
+/* logo */
+.kal-logo-box { border-color: #fff; color: #fff; transition: all .3s; }
+.kal-logo-text { color: #fff; transition: color .3s; }
+.kal-header.scrolled .kal-logo-box { border-color: #2B2926; color: #2B2926; }
+.kal-header.scrolled .kal-logo-text { color: #2B2926; }
+.kal-logo-accent { color: #E0A488; }
+.kal-header.scrolled .kal-logo-accent { color: #D97757; }
+/* içerik header altında kalmasın diye gövde üstüne pay (hero'lar zaten tam ekran/han padding'li) */
+body { padding-top: 0; }
