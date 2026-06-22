@@ -48,8 +48,24 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::hex('#D97757'),
+                'gray' => Color::hex('#5A5349'),
             ])
+            ->font('Manrope')
+            ->renderHook(
+                'panels::head.end',
+                fn (): string => <<<'HTML'
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+                    <style>
+                        .fi-topbar, .fi-sidebar-header { font-family: 'Manrope', sans-serif; }
+                        .fi-sidebar-item-label, .fi-btn, h1, h2, h3, .fi-header-heading { font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif !important; }
+                        .fi-sidebar-nav .fi-sidebar-group-label { letter-spacing: .04em; text-transform: uppercase; font-size: 10.5px; }
+                        :root { --kal-accent: #D97757; }
+                        .fi-sidebar-item.fi-active > a, .fi-sidebar-item-active > a { border-left: 3px solid #D97757; }
+                    </style>
+                HTML
+            )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
