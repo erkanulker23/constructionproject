@@ -1,18 +1,24 @@
 @php
-    // Önce admin → Menüler'de tanımlı "Header Menü"yü kullan; yoksa varsayılan navigasyon.
+    // Navigasyon admin → Menüler (/admin/menus) üzerinden yönetilir.
+    // 1) GeneralSettings'te seçili "Header Menü" varsa o; 2) yoksa sistemdeki ilk menü; 3) hiç yoksa varsayılan.
     $navLinks = [];
-    $headerMenuId = kalyon_setting('header_menu');
-    if ($headerMenuId) {
-        try {
-            $menu = \Modules\Menu\Entities\Menu::with(['items' => fn ($q) => $q->whereNull('parent_id')->defaultOrder()])->find($headerMenuId);
-            if ($menu) {
-                foreach ($menu->items as $item) {
-                    $navLinks[] = ['label' => $item->name, 'url' => $item->link ?: ($item->url ?: '#'), 'target' => $item->target ?? '_self'];
-                }
-            }
-        } catch (\Throwable $e) {
-            $navLinks = [];
+    try {
+        $headerMenuId = kalyon_setting('header_menu');
+        $menu = null;
+        if ($headerMenuId) {
+            $menu = \Modules\Menu\Entities\Menu::find($headerMenuId);
         }
+        if (! $menu) {
+            $menu = \Modules\Menu\Entities\Menu::query()->oldest('id')->first();
+        }
+        if ($menu) {
+            $items = $menu->items()->whereNull('parent_id')->defaultOrder()->get();
+            foreach ($items as $item) {
+                $navLinks[] = ['label' => $item->name, 'url' => $item->link ?: ($item->url ?: '#'), 'target' => $item->target ?? '_self'];
+            }
+        }
+    } catch (\Throwable $e) {
+        $navLinks = [];
     }
     if (empty($navLinks)) {
         $navLinks = [
