@@ -38,14 +38,14 @@ class ManageSettings extends SettingsPage
 
         return [
             TextInput::make('site_name')
-                ->required(),
+,
 
             TinyEditor::make('footer_copyright')
                 ->columnSpanFull()
                 ->profile('full')
                 ->label('Footer Metni')
                 ->maxHeight(150)
-                ->required(),
+,
 
             Section::make('cookie_consent')
                 ->heading('Çerez Politikası')
@@ -62,7 +62,7 @@ class ManageSettings extends SettingsPage
                         ->profile('full')
                         ->label('Çerez Onay Banner Metni')
                         ->maxHeight(150)
-                        ->required(),
+,
                 ]),
             Section::make('address')
                 ->heading('Adres Bilgileri')
@@ -224,7 +224,7 @@ class ManageSettings extends SettingsPage
                         ->schema([
                             Select::make('type')
                                 ->label('Tip')
-                                ->required()
+
                                 ->options([
                                     'facebook' => 'Facebook',
                                     'twitter' => 'Twitter',
@@ -250,7 +250,7 @@ class ManageSettings extends SettingsPage
                                 ->label('İkon'),
                             TextInput::make('link')
                                 ->label('Link')
-                                ->required()
+
                                 ->url(),
                         ])
                         ->columns(2)
@@ -362,7 +362,7 @@ class ManageSettings extends SettingsPage
                             'Shadows Into Light' => 'Shadows Into Light',
                         ])
                         ->searchable()
-                        ->required()
+
                         ->reactive()
                         ->afterStateUpdated(function (Set $set, $state) {
                             if ($state) {
