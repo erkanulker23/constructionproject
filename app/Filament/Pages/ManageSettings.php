@@ -138,20 +138,27 @@ class ManageSettings extends SettingsPage
             Section::make('menus')
                 ->heading('Menüler')
                 ->columns(2)
-                ->description('Menülerinizi buradan yönetebilirsiniz. (Bu kısım kaldırılmıştır. Lütfen anasayfa oluşturucudan menüleri yönetin.)')
+                ->description('Menüler "Menüler" (/admin/menus) sayfasından oluşturulur; burada hangi menünün nerede kullanılacağını seçersiniz.')
                 ->schema([
                     Select::make('header_menu')
-                        ->label('Üst Menü')
-                        ->options(fn () => $menus),
+                        ->label('Üst Menü (Header)')
+                        ->options(fn () => \Modules\Menu\Entities\Menu::orderBy('name')->pluck('name', 'id')->toArray())
+                        ->searchable()
+                        ->helperText('Üst menü navigasyonu. Yeni menü için Menüler sayfasını kullanın.'),
                     Select::make('header_mobile_menu')
                         ->label('Üst Mobil Menü')
-                        ->options(fn () => $menus),
+                        ->options(fn () => \Modules\Menu\Entities\Menu::orderBy('name')->pluck('name', 'id')->toArray())
+                        ->searchable()
+                        ->helperText('Boş bırakılırsa üst menü mobilde de kullanılır.'),
                     Select::make('footer_menu')
-                        ->label('Alt Menü')
-                        ->options(fn () => $menus),
+                        ->label('Alt Menü (Footer)')
+                        ->options(fn () => \Modules\Menu\Entities\Menu::orderBy('name')->pluck('name', 'id')->toArray())
+                        ->searchable()
+                        ->helperText('Footer link sütunu bu menüden gelir.'),
                     Select::make('footer_mobile_menu')
                         ->label('Alt Mobil Menü')
-                        ->options(fn () => $menus),
+                        ->options(fn () => \Modules\Menu\Entities\Menu::orderBy('name')->pluck('name', 'id')->toArray())
+                        ->searchable(),
                 ]),
             Section::make('analytics')
                 ->heading('Google Analytics Raporları')
