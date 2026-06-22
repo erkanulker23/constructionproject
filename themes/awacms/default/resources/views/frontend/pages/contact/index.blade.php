@@ -116,42 +116,41 @@
                 </form>
             </div>
 
-            {{-- DETAY / HARİTA --}}
-            <div data-reveal data-rd="0.1" style="opacity:0;display:flex;flex-direction:column;gap:18px">
+            {{-- HARİTA + KISA AKSİYON --}}
+            @php $workingHours = kalyon_setting('working_hours'); @endphp
+            <div data-reveal data-rd="0.1" style="opacity:0;display:flex;flex-direction:column;gap:22px">
                 @if($mapEmbed)
-                    <div style="position:relative;min-height:240px;border-radius:16px;overflow:hidden;border:1px solid #E6E0D4;background:#F0EAE0">
-                        <style>.kal-map-embed iframe{width:100%;height:100%;min-height:240px;border:0;display:block}</style>
-                        <div class="kal-map-embed" style="position:absolute;inset:0">{!! $mapEmbed !!}</div>
+                    <div style="position:relative;border-radius:16px;overflow:hidden;border:1px solid #E6E0D4;background:#F0EAE0">
+                        <style>.kal-map-embed iframe{width:100%;height:420px;border:0;display:block}</style>
+                        <div class="kal-map-embed">{!! $mapEmbed !!}</div>
                     </div>
                 @else
-                    <div style="position:relative;height:240px;border-radius:16px;overflow:hidden;border:1px solid #E6E0D4;background:linear-gradient(135deg,#2B2926,#3B342D)">
-                        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(217,119,87,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(217,119,87,.12) 1px,transparent 1px);background-size:30px 30px"></div>
-                        <div style="position:absolute;left:0;top:46%;width:100%;height:14px;background:rgba(217,119,87,.25);transform:rotate(-8deg)"></div>
-                        <div style="position:absolute;left:30%;top:0;width:12px;height:100%;background:rgba(217,119,87,.18)"></div>
-                        <div style="position:absolute;left:calc(30% + 6px);top:46%;transform:translate(-50%,-50%)"><span style="display:block;width:18px;height:18px;border-radius:50%;background:#D97757;box-shadow:0 0 0 6px rgba(217,119,87,.3)"></span></div>
-                        <div style="position:absolute;left:20px;bottom:18px;background:rgba(255,255,255,.95);border-radius:10px;padding:12px 16px;max-width:78%"><div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#D97757">Genel Merkez</div><div style="font-size:14px;font-weight:600;color:#2B2926;margin-top:2px;line-height:1.4">{{ $address }}</div></div>
+                    <div style="position:relative;height:420px;border-radius:16px;overflow:hidden;border:1px solid #E6E0D4;background:linear-gradient(135deg,#2B2926,#3B342D)">
+                        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(217,119,87,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(217,119,87,.12) 1px,transparent 1px);background-size:34px 34px"></div>
+                        <div style="position:absolute;left:0;top:48%;width:100%;height:16px;background:rgba(217,119,87,.22);transform:rotate(-6deg)"></div>
+                        <div style="position:absolute;left:34%;top:0;width:14px;height:100%;background:rgba(217,119,87,.16)"></div>
+                        <div style="position:absolute;left:34%;top:48%;transform:translate(-50%,-50%)"><span style="display:block;width:20px;height:20px;border-radius:50%;background:#D97757;box-shadow:0 0 0 8px rgba(217,119,87,.28)"></span></div>
+                        <div style="position:absolute;left:26px;bottom:26px;right:26px;background:rgba(255,255,255,.96);border-radius:12px;padding:18px 20px"><div style="font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#D97757">Genel Merkez</div><div style="font-size:15px;font-weight:600;color:#2B2926;margin-top:6px;line-height:1.5">{{ $address }}</div></div>
                     </div>
                 @endif
 
-                <div style="display:flex;gap:18px;padding:24px;border:1px solid #E6E0D4;border-radius:14px;background:#fff">
-                    <div style="flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:18px;border-radius:10px">⌖</div>
-                    <div>
-                        <div style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">Adres</div>
-                        <div style="font-size:16px;font-weight:600;color:#2B2926;margin-top:5px;line-height:1.5">{{ $address }}</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px" class="kal-split">
+                    @if($workingHours)
+                    <div style="padding:24px;border:1px solid #E6E0D4;border-radius:14px;background:#fff">
+                        <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:18px;border-radius:10px"><i class="fa-regular fa-clock"></i></div>
+                        <div style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273;margin-top:16px">Çalışma Saatleri</div>
+                        <div style="font-size:15px;font-weight:600;color:#2B2926;margin-top:5px;line-height:1.6">{{ $workingHours }}</div>
                     </div>
-                </div>
-
-                <div style="display:flex;gap:18px;padding:24px;border:1px solid #E6E0D4;border-radius:14px;background:#fff">
-                    <div style="flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:18px;border-radius:10px">✆</div>
-                    <div>
-                        <div style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273">Telefon &amp; E-posta</div>
-                        <a href="tel:{{ $phoneHref }}" style="display:block;font-size:16px;font-weight:600;color:#2B2926;margin-top:5px;text-decoration:none;transition:color .3s" style-hover="color:#D97757">{{ $phone }}</a>
-                        <a href="mailto:{{ $email }}" style="display:block;font-size:15px;font-weight:600;color:#5A5349;margin-top:3px;text-decoration:none;word-break:break-word;transition:color .3s" style-hover="color:#D97757">{{ $email }}</a>
-                    </div>
+                    @endif
+                    <a href="tel:{{ $phoneHref }}" style="padding:24px;border:1px solid #E6E0D4;border-radius:14px;background:#fff;text-decoration:none;transition:all .35s cubic-bezier(.16,1,.3,1)" style-hover="border-color:#D97757;transform:translateY(-4px);box-shadow:0 18px 40px rgba(43,41,38,.08)">
+                        <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#F7EAE2;color:#D97757;font-size:18px;border-radius:10px"><i class="fa-solid fa-phone-volume"></i></div>
+                        <div style="font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#8B8273;margin-top:16px">Hemen Arayın</div>
+                        <div style="font-size:17px;font-weight:700;color:#2B2926;margin-top:5px">{{ $phone }}</div>
+                    </a>
                 </div>
 
                 @if($whatsappHref)
-                    <a href="https://wa.me/{{ $whatsappHref }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:17px;background:#1F9D6B;color:#fff;font-weight:700;font-size:14.5px;border-radius:12px;text-decoration:none;transition:all .3s" style-hover="background:#198257;transform:translateY(-2px)">✆ WhatsApp ile Yazın</a>
+                    <a href="https://wa.me/{{ $whatsappHref }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:11px;padding:18px;background:#1F9D6B;color:#fff;font-weight:700;font-size:15px;border-radius:12px;text-decoration:none;transition:all .3s" style-hover="background:#198257;transform:translateY(-2px)"><i class="fa-brands fa-whatsapp" style="font-size:19px"></i> WhatsApp ile Yazın</a>
                 @endif
             </div>
         </div>

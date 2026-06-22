@@ -18,7 +18,7 @@ class ServicePostSliderSection extends Component
 
     public ?string $bgImage = '';
 
-    public int $servicePostCategoryId;
+    public ?int $servicePostCategoryId = null;
 
     public int $limit;
 
