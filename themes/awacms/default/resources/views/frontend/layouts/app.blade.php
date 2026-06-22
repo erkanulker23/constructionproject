@@ -7,8 +7,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="{{ theme_asset('css/kalyon.css') }}?v=1.1">
-    <script defer src="{{ theme_asset('js/kalyon.js') }}?v=1.1"></script>
+    @php
+        $kalCssV = @filemtime(base_path('themes/awacms/default/public/css/kalyon.css')) ?: '1';
+        $kalJsV = @filemtime(base_path('themes/awacms/default/public/js/kalyon.js')) ?: '1';
+    @endphp
+    <link rel="stylesheet" href="{{ theme_asset('css/kalyon.css') }}?v={{ $kalCssV }}">
+    <script defer src="{{ theme_asset('js/kalyon.js') }}?v={{ $kalJsV }}"></script>
 @endsection
 
 @section('body')
