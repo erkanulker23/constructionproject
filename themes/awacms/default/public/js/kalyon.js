@@ -147,24 +147,22 @@
     });
   }
 
-  /* ---- mobil menü ---- */
+  /* ---- mobil menü (tam ekran overlay) ---- */
   function initMobileMenu() {
-    var toggle = document.querySelector('[data-menu-toggle]');
     var panel = document.querySelector('[data-mobile-menu]');
-    if (!toggle || !panel) return;
-    toggle.addEventListener('click', function () {
-      var open = panel.getAttribute('data-open') === '1';
-      panel.style.transform = open ? 'translateX(100%)' : 'translateX(0)';
-      panel.setAttribute('data-open', open ? '0' : '1');
-      document.body.style.overflow = open ? '' : 'hidden';
-    });
-    panel.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        panel.style.transform = 'translateX(100%)';
-        panel.setAttribute('data-open', '0');
-        document.body.style.overflow = '';
+    var toggles = document.querySelectorAll('[data-menu-toggle]');
+    if (!panel || !toggles.length) return;
+    function open() { panel.classList.add('open'); panel.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+    function close() { panel.classList.remove('open'); panel.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+    toggles.forEach(function (t) {
+      t.addEventListener('click', function () {
+        panel.classList.contains('open') ? close() : open();
       });
     });
+    panel.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   }
 
   /* ---- transparan header → scroll'da katı ---- */

@@ -39,11 +39,41 @@
     </button>
 </header>
 
-{{-- mobil menü paneli --}}
-<div data-mobile-menu data-open="0" style="position:fixed;top:0;right:0;bottom:0;width:min(82vw,360px);background:#2B2926;z-index:1300;transform:translateX(100%);display:flex;flex-direction:column;padding:80px 36px 40px;gap:6px;box-shadow:-20px 0 60px rgba(0,0,0,.4)">
-    <button data-menu-toggle aria-label="Kapat" style="position:absolute;top:24px;right:28px;background:none;border:none;color:#fff;font-size:30px;cursor:pointer;line-height:1">×</button>
-    @foreach($navLinks as $link)
-        <a href="{{ $link['url'] }}" style="font-family:'Plus Jakarta Sans';font-size:19px;font-weight:700;color:#fff;text-decoration:none;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1)">{{ $link['label'] }}</a>
-    @endforeach
-    <a href="{{ route('contact.index') }}" style="margin-top:20px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:14px;font-weight:700;color:#fff;background:#D97757;padding:16px;text-decoration:none">✆ İletişime Geç</a>
+{{-- mobil menü — tam ekran overlay --}}
+@php
+    $mmPhone = kalyon_setting('phone', '+90 212 000 00 00');
+    $mmEmail = kalyon_setting('email', 'info@kalyoninsaat.com');
+    $mmSocial = kalyon_setting('social_media_links', []);
+@endphp
+<div data-mobile-menu class="kal-mobile-menu" aria-hidden="true">
+    <div class="kal-mm-inner">
+        <div class="kal-mm-head">
+            <span class="kal-mm-logo"><span class="kal-mm-logo-box">K</span> KALYON <span style="color:#E0A488">İNŞAAT</span></span>
+            <button data-menu-toggle class="kal-mm-close" aria-label="Menüyü kapat"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <nav class="kal-mm-nav">
+            @foreach($navLinks as $i => $link)
+                <a href="{{ $link['url'] }}" class="kal-mm-link" style="--d:{{ $i * 0.05 }}s">
+                    <span class="kal-mm-num">0{{ $i + 1 }}</span>
+                    <span class="kal-mm-label">{{ $link['label'] }}</span>
+                    <span class="kal-mm-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+            @endforeach
+        </nav>
+        <div class="kal-mm-foot">
+            <a href="{{ route('contact.index') }}" class="kal-mm-cta"><i class="fa-solid fa-phone-volume"></i> İletişime Geç</a>
+            <div class="kal-mm-contact">
+                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $mmPhone) }}">{{ $mmPhone }}</a>
+                <a href="mailto:{{ $mmEmail }}">{{ $mmEmail }}</a>
+            </div>
+            @if(!empty($mmSocial))
+            <div class="kal-mm-social">
+                @foreach($mmSocial as $item)
+                    @php $u = is_array($item) ? ($item['url'] ?? '#') : $item; $n = is_array($item) ? strtolower($item['name'] ?? 'link') : 'link'; @endphp
+                    <a href="{{ $u }}" target="_blank" rel="noopener" aria-label="{{ $n }}"><i class="fa-brands fa-{{ $n }}"></i></a>
+                @endforeach
+            </div>
+            @endif
+        </div>
+    </div>
 </div>
