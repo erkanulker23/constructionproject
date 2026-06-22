@@ -94,7 +94,7 @@ class AdminPanelProvider extends PanelProvider
                     ->defaultLocales(config('filament-spatie-laravel-translatable-plugin.default_locales')),
                 FilamentSpatieRolesPermissionsPlugin::make(),
                 SlidePlugin::make(),
-                GroupPlugin::make(),
+                // GroupPlugin kaldırıldı (kullanılmıyor)
                 // TagPlugin kaldırıldı (kullanılmıyor)
                 CommentPlugin::make(),
                 MenuPlugin::make(),
