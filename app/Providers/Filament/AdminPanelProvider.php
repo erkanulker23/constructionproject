@@ -103,7 +103,7 @@ class AdminPanelProvider extends PanelProvider
                 FaqPlugin::make(),
                 MemberPlugin::make(),
                 FeaturesPlugin::make(),
-                PlanPlugin::make(),
+                // PlanPlugin kaldırıldı (inşaat projesinde kullanılmıyor)
                 GalleryPlugin::make(),
                 GoogleReviewPlugin::make(),
                 SpotlightPlugin::make(),
