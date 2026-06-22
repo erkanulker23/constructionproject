@@ -4,6 +4,34 @@
     $email = kalyon_setting('email', 'info@kalyoninsaat.com');
     $copyright = kalyon_setting('footer_copyright', '© ' . date('Y') . ' Kalyon İnşaat. Tüm hakları saklıdır.');
     $social = kalyon_setting('social_media_links', []);
+
+    // Footer linkleri admin → Menüler'deki "Footer Menü"den gelir (fallback'li)
+    $footerLinks = [];
+    try {
+        $fmId = kalyon_setting('footer_menu');
+        $fmenu = $fmId ? \Modules\Menu\Entities\Menu::find($fmId) : null;
+        if (! $fmenu) {
+            $fmenu = \Modules\Menu\Entities\Menu::where('name', 'Footer Menü')->first();
+        }
+        if ($fmenu) {
+            foreach ($fmenu->items()->whereNull('parent_id')->defaultOrder()->get() as $item) {
+                $footerLinks[] = ['label' => $item->name, 'url' => $item->link ?: ($item->url ?: '#')];
+            }
+        }
+    } catch (\Throwable $e) {
+        $footerLinks = [];
+    }
+    if (empty($footerLinks)) {
+        $footerLinks = [
+            ['label' => 'Hakkımızda', 'url' => route('page.show', 'hakkimizda')],
+            ['label' => 'Hizmetler', 'url' => route('services.index')],
+            ['label' => 'Projeler', 'url' => route('projects.index')],
+            ['label' => 'Kataloglar', 'url' => route('catalogs.index')],
+            ['label' => 'Haberler', 'url' => route('blog.index')],
+            ['label' => 'İletişim', 'url' => route('contact.index')],
+        ];
+    }
+    $footerChunks = array_chunk($footerLinks, (int) ceil(count($footerLinks) / 2));
 @endphp
 
 <footer style="background:#1C1A17;color:#fff;padding:80px 0 36px">
@@ -16,17 +44,17 @@
             <div>
                 <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0A488;margin-bottom:16px">Kurumsal</div>
                 <div style="display:flex;flex-direction:column;gap:11px">
-                    <a href="{{ route('page.show', 'hakkimizda') }}" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Hakkımızda</a>
-                    <a href="{{ route('services.index') }}" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Hizmetler</a>
-                    <a href="{{ route('blog.index') }}" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Haberler</a>
+                    @foreach(($footerChunks[0] ?? []) as $fl)
+                        <a href="{{ $fl['url'] }}" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">{{ $fl['label'] }}</a>
+                    @endforeach
                 </div>
             </div>
             <div>
-                <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0A488;margin-bottom:16px">Projeler</div>
+                <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0A488;margin-bottom:16px">Hızlı Erişim</div>
                 <div style="display:flex;flex-direction:column;gap:11px">
-                    <a href="{{ route('projects.index') }}" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Tüm Projeler</a>
-                    <a href="{{ route('catalogs.index') }}" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Kataloglar</a>
-                    <a href="{{ route('contact.index') }}" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">İletişim</a>
+                    @foreach(($footerChunks[1] ?? []) as $fl)
+                        <a href="{{ $fl['url'] }}" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">{{ $fl['label'] }}</a>
+                    @endforeach
                 </div>
             </div>
             <div>

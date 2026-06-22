@@ -47,23 +47,6 @@ class ManageSettings extends SettingsPage
                 ->maxHeight(150)
 ,
 
-            Section::make('cookie_consent')
-                ->heading('Çerez Politikası')
-                ->columns(2)
-                ->description('Çerez politikası ayarlarınız.')
-                ->schema([
-                    Checkbox::make('show_cookie_consent_banner')
-                        ->label('Çerez Onay Bannerını Göster'),
-                    Select::make('cookie_consent_page')
-                        ->label('Çerez Politikası Sayfası')
-                        ->options(fn () => Page::all()->pluck('title', 'id')),
-                    TinyEditor::make('cookie_consent_banner_text')
-                        ->columnSpanFull()
-                        ->profile('full')
-                        ->label('Çerez Onay Banner Metni')
-                        ->maxHeight(150)
-,
-                ]),
             Section::make('address')
                 ->heading('Adres Bilgileri')
                 ->columns(2)
