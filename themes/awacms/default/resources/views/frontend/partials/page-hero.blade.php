@@ -2,6 +2,24 @@
 @php
     $bg = $bg ?? 'https://baynetinsaat.com.tr/uploads/2023/09/2-2-scaled.jpg';
 @endphp
+
+@if(!empty($breadcrumbs))
+    @php
+        $bcItems = [['name' => 'Ana Sayfa', 'item' => route('home')]];
+        foreach ($breadcrumbs as $label => $url) {
+            $bcItems[] = ['name' => $label, 'item' => $url ?: url()->current()];
+        }
+    @endphp
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => collect($bcItems)->map(fn ($b, $i) => [
+            '@type' => 'ListItem', 'position' => $i + 1, 'name' => $b['name'], 'item' => $b['item'],
+        ])->all(),
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+    </script>
+@endif
 <section class="kal-page-hero" style="position:relative;background:#2B2926;padding:130px 0 70px;overflow:hidden">
     <div style="position:absolute;inset:0;opacity:.22"><img src="{{ $bg }}" alt="" style="width:100%;height:100%;object-fit:cover"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,23,.7),rgba(28,26,23,.92))"></div>

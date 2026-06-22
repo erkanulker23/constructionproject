@@ -20,7 +20,9 @@
 
     @include('frontend.partials.header')
 
-    @yield('content')
+    <main id="icerik">
+        @yield('content')
+    </main>
 
     @include('frontend.partials.footer')
 @endsection

@@ -59,6 +59,8 @@ Route::get('minify/{any}', function ($any) {
         ->header('ETag', $checksum); // ETag for validation
 })->where('any', '.*')->name('themes_file');
 
+Route::get('sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+
 Route::get('robots.txt', function (\App\Settings\GeneralSettings $settings) {
     $robotsTxtContent = $settings->robots_txt;
 
