@@ -123,7 +123,9 @@ try {
 
 <body class="@yield('bodyClass')">
 <x-popup />
-    @include('cookie-consent::index')
+    @if(optional($generalSettings)->show_cookie_consent_banner)
+        @include('cookie-consent::index')
+    @endif
 
     @yield('body')
 
