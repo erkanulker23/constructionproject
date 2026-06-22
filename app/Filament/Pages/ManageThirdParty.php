@@ -25,19 +25,21 @@ class ManageThirdParty extends SettingsPage
     protected function getFormSchema(): array
     {
         return [
-            Section::make('open_ai_section')
-                ->heading('OpenAI')
-                ->description('API anahtarınız ChatGPT\'yi kullanmak için gereklidir.')
+            Section::make('ai_api_section')
+                ->heading('Yapay Zeka (AI) API Ayarları')
+                ->description('Yapay zeka destekli içerik üretimi (blog/haber metni ve SEO önerileri) için OpenAI API anahtarınızı girin. Boş bırakılırsa AI özellikleri devre dışı kalır.')
+                ->icon('heroicon-o-sparkles')
                 ->schema([
                     TextInput::make('openai_api_key')
-                        ->label('API Anahtarı')
-                        ->placeholder('API Anahtarı')
-                        ->hint('API anahtarınızı buraya yapıştırın.')
+                        ->label('OpenAI API Anahtarı')
+                        ->placeholder('sk-...')
+                        ->hint('API anahtarınızı buraya yapıştırın (şifreli saklanır).')
                         ->password()
                         ->revealable(),
                     Actions::make([
                         Action::make('go_to_openai_docs')
-                            ->label('OpenAI Oluştur')
+                            ->label('OpenAI API Anahtarı Oluştur')
+                            ->icon('heroicon-o-arrow-top-right-on-square')
                             ->url('https://platform.openai.com/api-keys')
                             ->openUrlInNewTab(),
                     ]),
