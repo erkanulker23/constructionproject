@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{margin:0;overflow-x:hidden;background:#fff}
+  ::selection{background:#D97757;color:#fff}
+  img{display:block}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:'Manrope',system-ui,sans-serif;color:#1F1C18;background:#fff;position:relative;overflow-x:hidden">
+
+  <!-- HEADER -->
+  <header style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 52px;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-bottom:1px solid #E8E2D7">
+    <a href="Kalyon İnşaat.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none">
+      <span style="display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;border:1.5px solid #2B2926;color:#2B2926;font-family:'Plus Jakarta Sans';font-weight:800;font-size:17px">K</span>
+      <span style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:15px;letter-spacing:2px;color:#2B2926">KALYON <span style="color:#D97757">İNŞAAT</span></span>
+    </a>
+    <nav style="display:flex;align-items:center;gap:26px">
+      <a href="Kalyon İnşaat.dc.html" style="font-size:14px;font-weight:600;color:#48433B;text-decoration:none;transition:color .3s" style-hover="color:#2B2926">Ana Sayfa</a>
+      <a href="Hakkımızda.dc.html" style="font-size:14px;font-weight:600;color:#48433B;text-decoration:none;transition:color .3s" style-hover="color:#2B2926">Hakkımızda</a>
+      <a href="Hizmetler.dc.html" style="font-size:14px;font-weight:600;color:#48433B;text-decoration:none;transition:color .3s" style-hover="color:#2B2926">Hizmetler</a>
+      <a href="Projeler.dc.html" style="font-size:14px;font-weight:600;color:#48433B;text-decoration:none;transition:color .3s" style-hover="color:#2B2926">Projeler</a>
+      <a href="Kataloglar.dc.html" style="font-size:14px;font-weight:600;color:#48433B;text-decoration:none;transition:color .3s" style-hover="color:#2B2926">Kataloglar</a>
+      <a href="Kalyon İnşaat.dc.html#haberler" style="font-size:14px;font-weight:600;color:#48433B;text-decoration:none;transition:color .3s" style-hover="color:#2B2926">Haberler</a>
+      <a href="İletişim.dc.html" style="display:inline-flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;color:#fff;background:#D97757;padding:12px 22px;text-decoration:none;transition:all .3s" style-hover="background:#C2603F;transform:translateY(-2px)">✆ İletişime Geç</a>
+    </nav>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section style="position:relative;background:radial-gradient(120% 130% at 78% 12%,#3B342D,#2B2926 68%);padding:96px 52px 80px;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(217,119,87,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(217,119,87,.07) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(70% 80% at 75% 25%,#000,transparent);mask-image:radial-gradient(70% 80% at 75% 25%,#000,transparent)"></div>
+    <div style="position:relative;max-width:1340px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px"><span style="width:42px;height:1px;background:#D97757"></span><span style="font-size:12.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#EAC1AC">Projelerimiz</span></div>
+      <h1 style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:clamp(40px,5vw,84px);line-height:1.02;letter-spacing:-.03em;color:#fff;max-width:18ch">Hayata geçirdiğimiz eserler</h1>
+      <p style="margin-top:22px;max-width:54ch;font-size:18px;line-height:1.65;color:rgba(255,255,255,.72)">İstanbul ve Balıkesir'de konut, villa ve ticari yapılarda tamamlanmış ve devam eden tüm projelerimiz.</p>
+      <div style="display:flex;gap:46px;margin-top:42px;flex-wrap:wrap">
+        <div><div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:42px;color:#fff;line-height:1">250<span style="color:#E0A488">+</span></div><div style="margin-top:6px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#EAC1AC">Tamamlanan</div></div>
+        <div><div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:42px;color:#fff;line-height:1">12</div><div style="margin-top:6px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#EAC1AC">Devam Eden</div></div>
+        <div><div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:42px;color:#fff;line-height:1">9.000<span style="color:#E0A488">+</span></div><div style="margin-top:6px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#EAC1AC">Mutlu Aile</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER + GRID -->
+  <section style="background:#F4EFE7;padding:54px 52px 120px">
+    <div style="max-width:1340px;margin:0 auto">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px">
+        <button data-filterbtn="all" style="font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;letter-spacing:.3px;color:#fff;background:#2B2926;border:1px solid #2B2926;padding:11px 22px;border-radius:30px;cursor:pointer;transition:all .3s">Tümü</button>
+        <button data-filterbtn="devam" style="font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;letter-spacing:.3px;color:#2B2926;background:transparent;border:1px solid #C9BFAD;padding:11px 22px;border-radius:30px;cursor:pointer;transition:all .3s">Devam Eden</button>
+        <button data-filterbtn="tamam" style="font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;letter-spacing:.3px;color:#2B2926;background:transparent;border:1px solid #C9BFAD;padding:11px 22px;border-radius:30px;cursor:pointer;transition:all .3s">Tamamlanan</button>
+        <button data-filterbtn="villa" style="font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;letter-spacing:.3px;color:#2B2926;background:transparent;border:1px solid #C9BFAD;padding:11px 22px;border-radius:30px;cursor:pointer;transition:all .3s">Villa</button>
+        <button data-filterbtn="rezidans" style="font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;letter-spacing:.3px;color:#2B2926;background:transparent;border:1px solid #C9BFAD;padding:11px 22px;border-radius:30px;cursor:pointer;transition:all .3s">Rezidans</button>
+        <button data-filterbtn="ticari" style="font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;letter-spacing:.3px;color:#2B2926;background:transparent;border:1px solid #C9BFAD;padding:11px 22px;border-radius:30px;cursor:pointer;transition:all .3s">Ticari</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+        <article data-card data-cat="villa devam" style="position:relative;aspect-ratio:4/3.4;overflow:hidden;border-radius:14px;background:#0c1018;cursor:pointer"><a href="Proje Detay.dc.html" style="position:absolute;inset:0;z-index:6" aria-label="Projeyi incele"></a>
+          <div style="position:absolute;inset:0;transition:transform 1s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"><img src="https://baynetinsaat.com.tr/uploads/2023/08/VADI-min.jpg" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,22,.1) 0%,transparent 32%,rgba(5,12,22,.92))"></div>
+          <div style="position:absolute;top:16px;left:16px;font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:rgba(43,41,38,.85);backdrop-filter:blur(4px);padding:7px 13px;border-radius:20px">Villa</div>
+          <div style="position:absolute;top:16px;right:16px;display:flex;gap:7px"><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E8852C;padding:7px 11px;border-radius:20px">Devam Ediyor</span><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#D63A3A;padding:7px 11px;border-radius:20px">Satışta</span></div>
+          <div style="position:absolute;left:22px;right:22px;bottom:22px"><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:24px;color:#fff;line-height:1.1">Vadi Zekeriyaköy</h3><div style="font-size:13px;color:rgba(255,255,255,.72);margin-top:6px">Sarıyer, İstanbul — 20 Villa + 1 Sosyal Tesis</div></div>
+        </article>
+        <article data-card data-cat="rezidans ticari devam" style="position:relative;aspect-ratio:4/3.4;overflow:hidden;border-radius:14px;background:#0c1018;cursor:pointer"><a href="Proje Detay.dc.html" style="position:absolute;inset:0;z-index:6" aria-label="Projeyi incele"></a>
+          <div style="position:absolute;inset:0;transition:transform 1s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"><img src="https://baynetinsaat.com.tr/uploads/2023/09/2-2-scaled.jpg" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,22,.1) 0%,transparent 32%,rgba(5,12,22,.92))"></div>
+          <div style="position:absolute;top:16px;left:16px;font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:rgba(43,41,38,.85);backdrop-filter:blur(4px);padding:7px 13px;border-radius:20px">Rezidans, Ticari</div>
+          <div style="position:absolute;top:16px;right:16px;display:flex;gap:7px"><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E8852C;padding:7px 11px;border-radius:20px">Devam Ediyor</span><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#D63A3A;padding:7px 11px;border-radius:20px">Satışta</span></div>
+          <div style="position:absolute;left:22px;right:22px;bottom:22px"><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:24px;color:#fff;line-height:1.1">Baynet Terrace</h3><div style="font-size:13px;color:rgba(255,255,255,.72);margin-top:6px">Çayırhisar, Balıkesir — 116 Daire, 3 Ticari</div></div>
+        </article>
+        <article data-card data-cat="rezidans tamam" style="position:relative;aspect-ratio:4/3.4;overflow:hidden;border-radius:14px;background:#0c1018;cursor:pointer"><a href="Proje Detay.dc.html" style="position:absolute;inset:0;z-index:6" aria-label="Projeyi incele"></a>
+          <div style="position:absolute;inset:0;transition:transform 1s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"><img src="https://dapyapi.com.tr/dapyapi/cdn/uploads/000006593_dap-45yil-dap-web.webp" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,22,.1) 0%,transparent 32%,rgba(5,12,22,.92))"></div>
+          <div style="position:absolute;top:16px;left:16px;font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:rgba(43,41,38,.85);backdrop-filter:blur(4px);padding:7px 13px;border-radius:20px">Rezidans</div>
+          <div style="position:absolute;top:16px;right:16px;display:flex;gap:7px"><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#1F9D6B;padding:7px 11px;border-radius:20px">Tamamlandı</span></div>
+          <div style="position:absolute;left:22px;right:22px;bottom:22px"><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:24px;color:#fff;line-height:1.1">DAP Rezidans</h3><div style="font-size:13px;color:rgba(255,255,255,.72);margin-top:6px">İstanbul — Rezidans Kompleksi</div></div>
+        </article>
+        <article data-card data-cat="ticari devam" style="position:relative;aspect-ratio:4/3.4;overflow:hidden;border-radius:14px;background:#0c1018;cursor:pointer"><a href="Proje Detay.dc.html" style="position:absolute;inset:0;z-index:6" aria-label="Projeyi incele"></a>
+          <div style="position:absolute;inset:0;transition:transform 1s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"><img src="https://dapyapi.com.tr/dapyapi/cdn/uploads/000006544_nk-mart-website-1920x1080-dap.webp" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,22,.1) 0%,transparent 32%,rgba(5,12,22,.92))"></div>
+          <div style="position:absolute;top:16px;left:16px;font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:rgba(43,41,38,.85);backdrop-filter:blur(4px);padding:7px 13px;border-radius:20px">Ticari</div>
+          <div style="position:absolute;top:16px;right:16px;display:flex;gap:7px"><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E8852C;padding:7px 11px;border-radius:20px">Devam Ediyor</span></div>
+          <div style="position:absolute;left:22px;right:22px;bottom:22px"><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:24px;color:#fff;line-height:1.1">NK Mart</h3><div style="font-size:13px;color:rgba(255,255,255,.72);margin-top:6px">Karma Kullanım — Ticari Kompleks</div></div>
+        </article>
+        <article data-card data-cat="villa devam" style="position:relative;aspect-ratio:4/3.4;overflow:hidden;border-radius:14px;background:#0c1018;cursor:pointer"><a href="Proje Detay.dc.html" style="position:absolute;inset:0;z-index:6" aria-label="Projeyi incele"></a>
+          <div style="position:absolute;inset:0;transition:transform 1s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"><img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1100" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,22,.1) 0%,transparent 32%,rgba(5,12,22,.92))"></div>
+          <div style="position:absolute;top:16px;left:16px;font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:rgba(43,41,38,.85);backdrop-filter:blur(4px);padding:7px 13px;border-radius:20px">Villa</div>
+          <div style="position:absolute;top:16px;right:16px;display:flex;gap:7px"><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E8852C;padding:7px 11px;border-radius:20px">Devam Ediyor</span><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#D63A3A;padding:7px 11px;border-radius:20px">Satışta</span></div>
+          <div style="position:absolute;left:22px;right:22px;bottom:22px"><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:24px;color:#fff;line-height:1.1">Nefesköy Kayacıklar</h3><div style="font-size:13px;color:rgba(255,255,255,.72);margin-top:6px">Kepsut, Balıkesir — 54 Villa</div></div>
+        </article>
+        <article data-card data-cat="rezidans ticari tamam" style="position:relative;aspect-ratio:4/3.4;overflow:hidden;border-radius:14px;background:#0c1018;cursor:pointer"><a href="Proje Detay.dc.html" style="position:absolute;inset:0;z-index:6" aria-label="Projeyi incele"></a>
+          <div style="position:absolute;inset:0;transition:transform 1s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"><img src="https://images.pexels.com/photos/1838640/pexels-photo-1838640.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1100" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,22,.1) 0%,transparent 32%,rgba(5,12,22,.92))"></div>
+          <div style="position:absolute;top:16px;left:16px;font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:rgba(43,41,38,.85);backdrop-filter:blur(4px);padding:7px 13px;border-radius:20px">Rezidans, Ticari</div>
+          <div style="position:absolute;top:16px;right:16px;display:flex;gap:7px"><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#1F9D6B;padding:7px 11px;border-radius:20px">Tamamlandı</span></div>
+          <div style="position:absolute;left:22px;right:22px;bottom:22px"><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:24px;color:#fff;line-height:1.1">Twin Towers</h3><div style="font-size:13px;color:rgba(255,255,255,.72);margin-top:6px">Karesi, Balıkesir — 104 Daire, 4 Ticari</div></div>
+        </article>
+        <article data-card data-cat="villa tamam" style="position:relative;aspect-ratio:4/3.4;overflow:hidden;border-radius:14px;background:#0c1018;cursor:pointer"><a href="Proje Detay.dc.html" style="position:absolute;inset:0;z-index:6" aria-label="Projeyi incele"></a>
+          <div style="position:absolute;inset:0;transition:transform 1s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"><img src="https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1100" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,22,.1) 0%,transparent 32%,rgba(5,12,22,.92))"></div>
+          <div style="position:absolute;top:16px;left:16px;font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:rgba(43,41,38,.85);backdrop-filter:blur(4px);padding:7px 13px;border-radius:20px">Villa</div>
+          <div style="position:absolute;top:16px;right:16px;display:flex;gap:7px"><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#1F9D6B;padding:7px 11px;border-radius:20px">Tamamlandı</span></div>
+          <div style="position:absolute;left:22px;right:22px;bottom:22px"><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:24px;color:#fff;line-height:1.1">Asmin Villaları</h3><div style="font-size:13px;color:rgba(255,255,255,.72);margin-top:6px">Altıeylül, Balıkesir — 60 Villa</div></div>
+        </article>
+        <article data-card data-cat="rezidans ticari devam" style="position:relative;aspect-ratio:4/3.4;overflow:hidden;border-radius:14px;background:#0c1018;cursor:pointer"><a href="Proje Detay.dc.html" style="position:absolute;inset:0;z-index:6" aria-label="Projeyi incele"></a>
+          <div style="position:absolute;inset:0;transition:transform 1s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"><img src="https://images.pexels.com/photos/2098624/pexels-photo-2098624.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1100" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,22,.1) 0%,transparent 32%,rgba(5,12,22,.92))"></div>
+          <div style="position:absolute;top:16px;left:16px;font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:rgba(43,41,38,.85);backdrop-filter:blur(4px);padding:7px 13px;border-radius:20px">Rezidans, Ticari</div>
+          <div style="position:absolute;top:16px;right:16px;display:flex;gap:7px"><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#E8852C;padding:7px 11px;border-radius:20px">Devam Ediyor</span></div>
+          <div style="position:absolute;left:22px;right:22px;bottom:22px"><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:24px;color:#fff;line-height:1.1">Palladium</h3><div style="font-size:13px;color:rgba(255,255,255,.72);margin-top:6px">Plevne Mah., Altıeylül, Balıkesir — 66 Daire, 16 Ticari</div></div>
+        </article>
+        <article data-card data-cat="villa tamam" style="position:relative;aspect-ratio:4/3.4;overflow:hidden;border-radius:14px;background:#0c1018;cursor:pointer"><a href="Proje Detay.dc.html" style="position:absolute;inset:0;z-index:6" aria-label="Projeyi incele"></a>
+          <div style="position:absolute;inset:0;transition:transform 1s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"><img src="https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1100" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,22,.1) 0%,transparent 32%,rgba(5,12,22,.92))"></div>
+          <div style="position:absolute;top:16px;left:16px;font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:rgba(43,41,38,.85);backdrop-filter:blur(4px);padding:7px 13px;border-radius:20px">Villa</div>
+          <div style="position:absolute;top:16px;right:16px;display:flex;gap:7px"><span style="font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#1F9D6B;padding:7px 11px;border-radius:20px">Tamamlandı</span></div>
+          <div style="position:absolute;left:22px;right:22px;bottom:22px"><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:24px;color:#fff;line-height:1.1">Koru Zekeriyaköy</h3><div style="font-size:13px;color:rgba(255,255,255,.72);margin-top:6px">Sarıyer, İstanbul — 4 Blok · 16 Villa</div></div>
+        </article>
+      </div>
+
+      <!-- CTA -->
+      <div style="margin-top:70px;background:linear-gradient(135deg,#2B2926,#3B342D);padding:64px 56px;border-radius:18px;text-align:center;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-30%;right:-6%;width:380px;height:380px;background:radial-gradient(circle,rgba(217,119,87,.35),transparent 65%);pointer-events:none"></div>
+        <h2 style="position:relative;font-family:'Plus Jakarta Sans';font-weight:800;font-size:clamp(28px,3vw,46px);line-height:1.08;letter-spacing:-.02em;color:#fff;max-width:20ch;margin:0 auto">Hayalinizdeki projeyi birlikte bulalım</h2>
+        <div style="position:relative;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px">
+          <a href="İletişim.dc.html" style="display:inline-flex;align-items:center;gap:12px;background:#D97757;color:#fff;font-weight:700;font-size:14px;letter-spacing:.4px;padding:18px 34px;text-decoration:none;transition:all .35s cubic-bezier(.16,1,.3,1)" style-hover="background:#fff;color:#2B2926;transform:translateY(-3px)">İletişime Geçin →</a>
+          <a href="Kalyon İnşaat.dc.html" style="display:inline-flex;align-items:center;gap:12px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:.4px;padding:18px 34px;text-decoration:none;border:1px solid rgba(255,255,255,.3);transition:all .35s" style-hover="border-color:#fff;transform:translateY(-3px)">Ana Sayfa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#1C1A17;color:#fff;padding:80px 0 36px">
+    <div style="max-width:1340px;margin:0 auto;padding:0 52px">
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,.1)">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px"><span style="display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;background:#D97757;color:#fff;font-family:'Plus Jakarta Sans';font-weight:800;font-size:16px">K</span><span style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:16px;letter-spacing:2px">KALYON <span style="color:#E0A488">İNŞAAT</span></span></div>
+          <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.55);max-width:42ch">1976'dan bu yana mühendislik gücü, dijital teknoloji ve sürdürülebilir vizyonla geleceğin yaşam alanlarını inşa ediyoruz.</p>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0A488;margin-bottom:16px">Kurumsal</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="Hakkımızda.dc.html" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Hakkımızda</a>
+            <a href="Hizmetler.dc.html" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Hizmetler</a>
+            <a href="Kalyon İnşaat.dc.html#surdurulebilirlik" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Sürdürülebilirlik</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0A488;margin-bottom:16px">Projeler</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="Projeler.dc.html" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Tüm Projeler</a>
+            <a href="Kataloglar.dc.html" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Kataloglar</a>
+            <a href="Kalyon İnşaat.dc.html#haberler" style="font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">Haberler</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E0A488;margin-bottom:16px">İletişim</div>
+          <div style="display:flex;flex-direction:column;gap:11px;font-size:13.5px;color:rgba(255,255,255,.62)">
+            <span>Maslak, Sarıyer<br>İstanbul, Türkiye</span>
+            <a href="tel:+902120000000" style="color:rgba(255,255,255,.62);text-decoration:none;transition:color .3s" style-hover="color:#fff">+90 212 000 00 00</a>
+            <a href="İletişim.dc.html" style="color:#E0A488;text-decoration:none;font-weight:600;transition:color .3s" style-hover="color:#fff">İletişim Sayfası →</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px">
+        <span style="font-size:13px;color:rgba(255,255,255,.4)">© 2026 Kalyon İnşaat. Tüm hakları saklıdır.</span>
+        <div style="display:flex;gap:22px"><a href="#" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s" style-hover="color:#E0A488">LinkedIn</a><a href="#" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s" style-hover="color:#E0A488">Instagram</a><a href="#" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s" style-hover="color:#E0A488">YouTube</a></div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  componentDidMount() {
+    const root = this.rootRef.current; if (!root) return;
+    const btns = [...root.querySelectorAll('[data-filterbtn]')];
+    const cards = [...root.querySelectorAll('[data-card]')];
+    const apply = (cat) => {
+      btns.forEach(b => { const on = b.getAttribute('data-filterbtn') === cat; b.style.background = on ? '#2B2926' : 'transparent'; b.style.color = on ? '#fff' : '#2B2926'; b.style.borderColor = on ? '#2B2926' : '#C9BFAD'; });
+      cards.forEach(c => {
+        const cats = (c.getAttribute('data-cat') || '').split(' ');
+        const show = cat === 'all' || cats.indexOf(cat) >= 0;
+        if (show) { c.style.display = ''; c.style.opacity = '0'; c.style.transform = 'translateY(14px)'; c.style.transition = 'opacity .5s ease, transform .5s ease'; setTimeout(() => { c.style.opacity = '1'; c.style.transform = 'none'; }, 20); }
+        else { c.style.display = 'none'; }
+      });
+    };
+    btns.forEach(b => b.addEventListener('click', () => apply(b.getAttribute('data-filterbtn'))));
+  }
+  renderVals() { return { rootRef: this.rootRef }; }
+}
+</script>
+</body>
+</html>

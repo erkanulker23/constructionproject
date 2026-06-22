@@ -1,0 +1,6 @@
+*
+!public/
+!.gitignore
+old-images
+livewire-tmp
+
