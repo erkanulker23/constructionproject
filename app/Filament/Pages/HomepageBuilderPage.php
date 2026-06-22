@@ -89,6 +89,7 @@ class HomepageBuilderPage extends Page implements HasForms
                 Section::make('header')
                     ->collapsible()
                     ->collapsed()
+                    ->hidden() // Kalyon teması header'ı Menüler + Genel Ayarlar'dan yönetilir
                     ->heading('Header içeriği')
                     ->schema([
                         Builder::make('header')
@@ -893,6 +894,7 @@ class HomepageBuilderPage extends Page implements HasForms
                 Section::make('footer')
                     ->collapsible()
                     ->collapsed()
+                    ->hidden() // Kalyon teması footer'ı Genel Ayarlar'dan yönetilir
                     ->heading('Footer içeriği')
                     ->schema([
                         Builder::make('footer')
