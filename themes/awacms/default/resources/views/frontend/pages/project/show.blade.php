@@ -18,9 +18,9 @@
 <div style="font-family:'Manrope',system-ui,sans-serif;color:#1F1C18;background:#fff">
 
     {{-- HERO --}}
-    <section style="position:relative;background:#2B2926;min-height:62vh;display:flex;align-items:flex-end;overflow:hidden">
-        <div style="position:absolute;inset:0"><img src="{{ $project->cover_url }}" alt="{{ $project->title }}" style="width:100%;height:100%;object-fit:cover;opacity:.55"></div>
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,23,.4),rgba(28,26,23,.92))"></div>
+    <section style="position:relative;background:#2B2926;min-height:82vh;display:flex;align-items:flex-end;overflow:hidden">
+        <div style="position:absolute;inset:0"><img src="{{ $project->cover_url }}" alt="{{ $project->title }}" style="width:100%;height:100%;object-fit:cover;opacity:.65"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,23,.25) 0%,rgba(28,26,23,.35) 45%,rgba(28,26,23,.92) 100%)"></div>
         <div class="kal-pad" style="position:relative;max-width:1340px;margin:0 auto;padding:0 52px 64px;width:100%">
             <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:20px;font-size:12.5px;color:rgba(255,255,255,.6)">
                 <a href="{{ route('home') }}" style="color:rgba(255,255,255,.6);text-decoration:none">Ana Sayfa</a><span style="opacity:.5">/</span>
