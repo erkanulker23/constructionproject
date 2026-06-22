@@ -134,17 +134,4 @@ Route::localized(function () {
         ->name('catalogs.index');
 });
 
-// Form Routes
-Route::get('/forms/{slug}', [\App\Http\Controllers\FormController::class, 'show'])->name('forms.show');
-Route::post('/forms/{slug}', [\App\Http\Controllers\FormController::class, 'submit'])->name('forms.submit');
-Route::get('/forms/embed/{id}', [\App\Http\Controllers\FormController::class, 'embed'])->name('forms.embed');
-
-// Form Builder Routes
-Route::get('/admin/forms/builder', [\App\Http\Controllers\FormBuilderController::class, 'index'])->name('forms.builder');
-Route::post('/admin/forms/builder/save', [\App\Http\Controllers\FormBuilderController::class, 'save'])->name('forms.builder.save');
-Route::get('/admin/forms/builder/load/{id}', [\App\Http\Controllers\FormBuilderController::class, 'load'])->name('forms.builder.load');
-Route::post('/admin/forms/builder/duplicate/{id}', [\App\Http\Controllers\FormBuilderController::class, 'duplicate'])->name('forms.builder.duplicate');
-Route::get('/admin/forms/builder/export/{id}', [\App\Http\Controllers\FormBuilderController::class, 'export'])->name('forms.builder.export');
-Route::post('/admin/forms/builder/import', [\App\Http\Controllers\FormBuilderController::class, 'import'])->name('forms.builder.import');
-
 require __DIR__.'/auth.php';
