@@ -6,7 +6,7 @@
     "Cart": true,
     "Slide": true,
     "Tag": true,
-    "Group": true,
+    "Group": false,
     "Menu": true,
     "Cargo": true,
     "Comment": true,
