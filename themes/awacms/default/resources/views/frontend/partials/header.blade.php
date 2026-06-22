@@ -1,12 +1,29 @@
 @php
-    $navLinks = [
-        ['label' => 'Ana Sayfa', 'url' => route('home')],
-        ['label' => 'Hakkımızda', 'url' => route('page.show', 'hakkimizda')],
-        ['label' => 'Hizmetler', 'url' => route('services.index')],
-        ['label' => 'Projeler', 'url' => route('projects.index')],
-        ['label' => 'Kataloglar', 'url' => route('catalogs.index')],
-        ['label' => 'Haberler', 'url' => route('blog.index')],
-    ];
+    // Önce admin → Menüler'de tanımlı "Header Menü"yü kullan; yoksa varsayılan navigasyon.
+    $navLinks = [];
+    $headerMenuId = kalyon_setting('header_menu');
+    if ($headerMenuId) {
+        try {
+            $menu = \Modules\Menu\Entities\Menu::with(['items' => fn ($q) => $q->whereNull('parent_id')->defaultOrder()])->find($headerMenuId);
+            if ($menu) {
+                foreach ($menu->items as $item) {
+                    $navLinks[] = ['label' => $item->name, 'url' => $item->link ?: ($item->url ?: '#'), 'target' => $item->target ?? '_self'];
+                }
+            }
+        } catch (\Throwable $e) {
+            $navLinks = [];
+        }
+    }
+    if (empty($navLinks)) {
+        $navLinks = [
+            ['label' => 'Ana Sayfa', 'url' => route('home'), 'target' => '_self'],
+            ['label' => 'Hakkımızda', 'url' => route('page.show', 'hakkimizda'), 'target' => '_self'],
+            ['label' => 'Hizmetler', 'url' => route('services.index'), 'target' => '_self'],
+            ['label' => 'Projeler', 'url' => route('projects.index'), 'target' => '_self'],
+            ['label' => 'Kataloglar', 'url' => route('catalogs.index'), 'target' => '_self'],
+            ['label' => 'Haberler', 'url' => route('blog.index'), 'target' => '_self'],
+        ];
+    }
     $siteName = kalyon_setting('site_name', 'KALYON İNŞAAT');
     $logo = kalyon_setting('header_logo');
 @endphp
