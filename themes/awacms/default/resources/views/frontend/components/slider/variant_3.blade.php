@@ -38,21 +38,25 @@
     </div>
   @endforeach
 
-  {{-- thumbnail navigasyon --}}
-  @if(count($kalSlides) > 1)
-    <div class="kal-hero-thumbs" style="position:absolute;left:52px;bottom:36px;z-index:6;display:flex;align-items:center;gap:12px">
-      @foreach($kalSlides as $i => $slide)
-        @php $thumb = $slide->imageUrl ?: $slide->mobileImageUrl; @endphp
-        <div data-hdot data-thumb class="kal-hthumb {{ $i === 0 ? 'is-active' : '' }}" aria-label="Slayt {{ $i + 1 }}">
-          @if($thumb)<img src="{{ $thumb }}" alt="" loading="lazy">@endif
-          <span class="kal-hthumb-num">0{{ $i + 1 }}</span>
-        </div>
-      @endforeach
+  {{-- alt bar: thumbnaillar + kaydırın (içerik container'ı ile hizalı) --}}
+  <div class="kal-pad" style="position:absolute;left:0;right:0;bottom:36px;z-index:6;max-width:1340px;margin:0 auto;padding:0 52px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+    @if(count($kalSlides) > 1)
+      <div class="kal-hero-thumbs" style="display:flex;align-items:center;gap:12px">
+        @foreach($kalSlides as $i => $slide)
+          @php $thumb = $slide->imageUrl ?: $slide->mobileImageUrl; @endphp
+          <div data-hdot data-thumb class="kal-hthumb {{ $i === 0 ? 'is-active' : '' }}" aria-label="Slayt {{ $i + 1 }}">
+            @if($thumb)<img src="{{ $thumb }}" alt="" loading="lazy">@endif
+            <span class="kal-hthumb-num">0{{ $i + 1 }}</span>
+          </div>
+        @endforeach
+      </div>
+    @else
+      <span></span>
+    @endif
+    <div style="display:flex;align-items:center;gap:14px;flex:none">
+      <span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7)">Kaydırın</span>
+      <span style="position:relative;width:40px;height:1px;background:rgba(255,255,255,.4);overflow:hidden"><span style="position:absolute;top:0;left:0;width:14px;height:1px;background:#fff;animation:scrolldot 2s ease-in-out infinite"></span></span>
     </div>
-  @endif
-  <div style="position:absolute;right:52px;bottom:36px;z-index:6;display:flex;align-items:center;gap:14px">
-    <span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7)">Kaydırın</span>
-    <span style="position:relative;width:40px;height:1px;background:rgba(255,255,255,.4);overflow:hidden"><span style="position:absolute;top:0;left:0;width:14px;height:1px;background:#fff;animation:scrolldot 2s ease-in-out infinite"></span></span>
   </div>
 </section>
 @endif

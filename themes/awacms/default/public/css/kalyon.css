@@ -42,7 +42,7 @@ input:focus, textarea:focus { outline: none; border-color: #D97757 !important; }
 @media (max-width: 640px) {
   .kal-grid-3, .kal-grid-4 { grid-template-columns: 1fr !important; }
   .kal-pad { padding-left: 18px !important; padding-right: 18px !important; }
-  .kal-header { padding: 14px 18px !important; }
+  .kal-header { padding-top: 12px !important; padding-bottom: 12px !important; }
   .kal-stat-grid { grid-template-columns: 1fr 1fr !important; }
   h1 { font-size: clamp(38px, 11vw, 60px) !important; }
 }
@@ -50,6 +50,7 @@ input:focus, textarea:focus { outline: none; border-color: #D97757 !important; }
 /* ====== TRANSPARAN HEADER (hero üzerinde) ====== */
 .kal-header {
   position: fixed; top: 0; left: 0; right: 0;
+  padding: 18px 0; /* dikey; yatay hizalama içerideki .kal-header-inner (1340px) ile body/footer'a eşitlenir */
   background: transparent;
   border-bottom: 1px solid rgba(255,255,255,.12);
   transition: background .4s ease, border-color .4s ease, box-shadow .4s ease, padding .4s ease;

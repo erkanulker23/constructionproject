@@ -34,7 +34,8 @@
     $logo = kalyon_setting('header_logo');
 @endphp
 
-<header class="kal-header" data-header style="z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 52px">
+<header class="kal-header" data-header style="z-index:100">
+  <div class="kal-pad kal-header-inner" style="max-width:1340px;margin:0 auto;padding:0 52px;display:flex;align-items:center;justify-content:space-between">
     <a href="{{ route('home') }}" style="display:flex;align-items:center;gap:12px;text-decoration:none">
         @if($logo)
             <img src="{{ \Illuminate\Support\Facades\Storage::url($logo) }}" alt="{{ $siteName }}" style="height:40px;width:auto">
@@ -60,6 +61,7 @@
         <span style="display:block;width:20px;height:2px;background:#fff"></span>
         <span style="display:block;width:20px;height:2px;background:#fff"></span>
     </button>
+  </div>
 </header>
 
 {{-- mobil menü — tam ekran overlay --}}
