@@ -97,14 +97,23 @@
     var dots = hero.querySelectorAll('[data-hdot]');
     if (slides.length < 2) return;
     var i = 0;
+    function setDot(d, active) {
+      if (!d) return;
+      d.classList.toggle('is-active', active);
+      // düz çubuk dot'lar için inline stil (thumbnail dot'larda data-thumb var → atla)
+      if (d.getAttribute('data-thumb') === null) {
+        d.style.width = active ? '34px' : '14px';
+        d.style.background = active ? '#D97757' : 'rgba(255,255,255,.4)';
+      }
+    }
     function go(n) {
       slides[i].style.opacity = '0';
-      if (dots[i]) { dots[i].style.width = '14px'; dots[i].style.background = 'rgba(255,255,255,.4)'; }
+      setDot(dots[i], false);
       i = (n + slides.length) % slides.length;
       slides[i].style.opacity = '1';
       var img = slides[i].querySelector('img');
       if (img) { img.style.animation = 'none'; void img.offsetWidth; img.style.animation = 'kenburns 8s ease-out forwards'; }
-      if (dots[i]) { dots[i].style.width = '34px'; dots[i].style.background = '#D97757'; }
+      setDot(dots[i], true);
     }
     dots.forEach(function (d, idx) { d.addEventListener('click', function () { go(idx); }); });
     setInterval(function () { go(i + 1); }, 5500);
@@ -177,9 +186,51 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  /* ---- lightbox galeri ---- */
+  function initLightbox() {
+    var triggers = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
+    if (!triggers.length) return;
+    var images = triggers.map(function (t) { return t.getAttribute('data-lightbox'); });
+    var current = 0;
+
+    var box = document.createElement('div');
+    box.className = 'kal-lightbox';
+    box.innerHTML =
+      '<button class="kal-lb-close" aria-label="Kapat"><i class="fa-solid fa-xmark"></i></button>' +
+      '<button class="kal-lb-prev" aria-label="Önceki"><i class="fa-solid fa-chevron-left"></i></button>' +
+      '<figure class="kal-lb-figure"><img alt=""><figcaption class="kal-lb-count"></figcaption></figure>' +
+      '<button class="kal-lb-next" aria-label="Sonraki"><i class="fa-solid fa-chevron-right"></i></button>';
+    document.body.appendChild(box);
+
+    var imgEl = box.querySelector('img');
+    var countEl = box.querySelector('.kal-lb-count');
+    function show(i) {
+      current = (i + images.length) % images.length;
+      imgEl.src = images[current];
+      countEl.textContent = (current + 1) + ' / ' + images.length;
+    }
+    function open(i) { show(i); box.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function close() { box.classList.remove('open'); document.body.style.overflow = ''; }
+
+    triggers.forEach(function (t, i) {
+      t.style.cursor = 'zoom-in';
+      t.addEventListener('click', function (e) { e.preventDefault(); open(i); });
+    });
+    box.querySelector('.kal-lb-close').addEventListener('click', close);
+    box.querySelector('.kal-lb-next').addEventListener('click', function () { show(current + 1); });
+    box.querySelector('.kal-lb-prev').addEventListener('click', function () { show(current - 1); });
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!box.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') show(current + 1);
+      else if (e.key === 'ArrowLeft') show(current - 1);
+    });
+  }
+
   function init() {
     initHover(); initReveal(); initCounters(); initBars();
-    initHero(); initFilter(); initFaq(); initMobileMenu(); initHeaderScroll();
+    initHero(); initFilter(); initFaq(); initMobileMenu(); initHeaderScroll(); initLightbox();
   }
 
   if (document.readyState === 'loading') {

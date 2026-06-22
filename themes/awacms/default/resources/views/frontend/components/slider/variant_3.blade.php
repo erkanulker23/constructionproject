@@ -35,9 +35,13 @@
   </div>
 
   @if(count($kalSlides) > 1)
-    <div style="position:absolute;left:52px;bottom:38px;z-index:6;display:flex;align-items:center;gap:12px">
+    <div class="kal-hero-thumbs" style="position:absolute;left:52px;bottom:36px;z-index:6;display:flex;align-items:center;gap:12px">
       @foreach($kalSlides as $i => $slide)
-        <div data-hdot style="width:{{ $i === 0 ? '34px' : '14px' }};height:4px;border-radius:3px;background:{{ $i === 0 ? '#D97757' : 'rgba(255,255,255,.4)' }};cursor:pointer;transition:all .4s"></div>
+        @php $thumb = $slide->imageUrl ?: $slide->mobileImageUrl; @endphp
+        <div data-hdot data-thumb class="kal-hthumb {{ $i === 0 ? 'is-active' : '' }}" aria-label="Slayt {{ $i + 1 }}">
+          @if($thumb)<img src="{{ $thumb }}" alt="" loading="lazy">@endif
+          <span class="kal-hthumb-num">0{{ $i + 1 }}</span>
+        </div>
       @endforeach
     </div>
   @endif

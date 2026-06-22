@@ -79,14 +79,38 @@
         </div>
     </section>
 
+    {{-- PROJE AVANTAJLARI --}}
+    <section class="kal-section" style="background:#fff;padding:0 0 110px">
+        <div class="kal-pad" style="max-width:1340px;margin:0 auto;padding:0 52px">
+            <div class="kal-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+                @foreach([
+                    ['fa-location-dot', 'Merkezi Konum', 'Ulaşım, eğitim ve sosyal donatılara yakın ayrıcalıklı lokasyon.'],
+                    ['fa-shield-halved', 'Deprem Güvenli', 'Güncel yönetmeliğe uygun, denetimli ve dayanıklı yapı sistemi.'],
+                    ['fa-leaf', 'Sürdürülebilir', 'Enerji verimli, düşük karbonlu ve çevre dostu üretim anlayışı.'],
+                    ['fa-key', 'Zamanında Teslim', 'Şeffaf süreç yönetimiyle taahhüt edilen tarihte anahtar teslim.'],
+                ] as $i => $adv)
+                    <div data-reveal data-rd="{{ $i * 0.06 }}" style="opacity:0;background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:30px 26px;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .4s" style-hover="transform:translateY(-8px);box-shadow:0 24px 50px rgba(43,41,38,.1);border-color:#D97757">
+                        <div style="width:50px;height:50px;display:flex;align-items:center;justify-content:center;background:#2B2926;color:#D97757;font-size:20px;border-radius:11px;margin-bottom:22px"><i class="fa-solid {{ $adv[0] }}"></i></div>
+                        <h3 style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:18px;color:#2B2926">{{ $adv[1] }}</h3>
+                        <p style="margin-top:10px;font-size:14px;line-height:1.65;color:#6A6358">{{ $adv[2] }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     {{-- GALERİ --}}
     @if(count($gallery))
     <section class="kal-section" style="background:#F4EFE7;padding:100px 0">
         <div class="kal-pad" style="max-width:1340px;margin:0 auto;padding:0 52px">
-            <h2 data-reveal style="opacity:0;font-family:'Plus Jakarta Sans';font-weight:800;font-size:clamp(28px,3vw,44px);color:#2B2926;margin-bottom:40px">Galeri</h2>
+            <div data-reveal style="opacity:0;display:flex;align-items:center;gap:13px;margin-bottom:14px"><span style="width:34px;height:1px;background:#D97757"></span><span style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#D97757">Proje Galerisi</span></div>
+            <h2 data-reveal style="opacity:0;font-family:'Plus Jakarta Sans';font-weight:800;font-size:clamp(28px,3vw,44px);color:#2B2926;margin-bottom:40px">Görsellere göz atın</h2>
             <div class="kal-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
                 @foreach($gallery as $img)
-                    <div data-reveal style="opacity:0;aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:#0c1018"><img src="{{ $img }}" alt="{{ $project->title }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"></div>
+                    <div data-reveal data-lightbox="{{ $img }}" role="button" tabindex="0" aria-label="Görseli büyüt" style="opacity:0;position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:#0c1018">
+                        <img src="{{ $img }}" alt="{{ $project->title }} - görsel {{ $loop->iteration }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)">
+                        <span style="position:absolute;top:12px;right:12px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:rgba(43,41,38,.6);backdrop-filter:blur(4px);color:#fff;border-radius:50%;font-size:14px;opacity:0;transition:opacity .3s" class="kal-zoom-ico"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -114,5 +138,20 @@
         </div>
     </section>
     @endif
+
+    {{-- CTA --}}
+    <section class="kal-section" style="position:relative;background:#2B2926;padding:90px 0;overflow:hidden">
+        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(217,119,87,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(217,119,87,.05) 1px,transparent 1px);background-size:54px 54px;-webkit-mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent);mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent);pointer-events:none"></div>
+        <div class="kal-pad" style="position:relative;max-width:1340px;margin:0 auto;padding:0 52px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap">
+            <div>
+                <h2 style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:clamp(24px,2.8vw,40px);color:#fff;max-width:20ch">{{ $project->title }} hakkında bilgi alın</h2>
+                <p style="margin-top:12px;font-size:16px;color:rgba(255,255,255,.7);max-width:52ch">Fiyat, ödeme planı ve daire seçenekleri için uzman ekibimizle iletişime geçin.</p>
+            </div>
+            <div style="display:flex;gap:14px;flex-wrap:wrap">
+                <a href="{{ route('contact.index') }}" style="display:inline-flex;align-items:center;gap:10px;background:#D97757;color:#fff;font-weight:700;font-size:14px;padding:17px 30px;text-decoration:none;transition:all .35s" style-hover="background:#C2603F;transform:translateY(-3px)">İletişime Geçin <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="{{ route('catalogs.index') }}" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);color:#fff;font-weight:700;font-size:14px;padding:17px 30px;text-decoration:none;border:1px solid rgba(255,255,255,.3);transition:all .35s" style-hover="background:rgba(255,255,255,.16);transform:translateY(-3px)">Katalog İndir</a>
+            </div>
+        </div>
+    </section>
 </div>
 @endsection
