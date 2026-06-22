@@ -21,7 +21,7 @@ class Project extends Model implements HasMedia, Sortable
     use SortableTrait;
 
     protected $fillable = [
-        'title', 'slug', 'category', 'location', 'status', 'is_sale',
+        'title', 'slug', 'category', 'project_category_id', 'location', 'status', 'is_sale',
         'client', 'area', 'year', 'short_description', 'content',
         'specs', 'is_featured', 'published', 'order_column',
     ];
@@ -43,6 +43,29 @@ class Project extends Model implements HasMedia, Sortable
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    public function projectCategory()
+    {
+        return $this->belongsTo(ProjectCategory::class);
+    }
+
+    /** Frontend gösterimi için kategori adı (ilişki → yoksa string fallback). */
+    public function getCategoryLabelAttribute(): ?string
+    {
+        if ($this->relationLoaded('projectCategory') || $this->project_category_id) {
+            $name = optional($this->projectCategory)->name;
+            if ($name) {
+                return $name;
+            }
+        }
+        return $this->category ? \Illuminate\Support\Str::title($this->category) : null;
+    }
+
+    /** Filtre (data-cat) için kategori slug'ı. */
+    public function getCategoryFilterAttribute(): ?string
+    {
+        return optional($this->projectCategory)->slug ?: $this->category;
     }
 
     public function getRouteKeyName(): string

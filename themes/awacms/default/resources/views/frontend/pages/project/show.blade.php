@@ -6,7 +6,7 @@
     // temel künye satırları
     $baseInfo = array_filter([
         'Konum' => $project->location,
-        'Kategori' => $project->category ? ucfirst($project->category) : null,
+        'Kategori' => $project->category_label,
         'Durum' => $project->status_label,
         'İşveren' => $project->client,
         'Alan' => $project->area,

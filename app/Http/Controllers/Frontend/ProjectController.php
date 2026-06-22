@@ -9,7 +9,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::published()->orderBy('order_column')->get();
+        $projects = Project::published()->with('projectCategory')->orderBy('order_column')->get();
 
         seo()->title('Projelerimiz')->description('Kalyon İnşaat tarafından hayata geçirilen konut, villa ve ticari projeler.');
 

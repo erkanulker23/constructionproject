@@ -46,7 +46,7 @@ class ProjectsSection extends Component
         $this->showFilter = (bool) ($data['show_filter'] ?? true);
         $this->limit = (int) ($data['limit'] ?? 6);
 
-        $query = Project::published()->orderBy('order_column');
+        $query = Project::published()->with('projectCategory')->orderBy('order_column');
         if ($this->onlyFeatured) {
             $query->where('is_featured', true);
         }

@@ -53,16 +53,15 @@ class ProjectResource extends Resource
                         ->label('Slug (URL)')
                         ->helperText('Boş bırakılırsa proje adından otomatik üretilir.')
                         ->unique(ignoreRecord: true),
-                    Forms\Components\Select::make('category')
+                    Forms\Components\Select::make('project_category_id')
                         ->label('Kategori')
-                        ->options([
-                            'villa' => 'Villa',
-                            'rezidans' => 'Rezidans',
-                            'ticari' => 'Ticari',
-                            'konut' => 'Konut',
-                            'altyapi' => 'Altyapı',
+                        ->relationship('projectCategory', 'name')
+                        ->searchable()
+                        ->preload()
+                        ->createOptionForm([
+                            Forms\Components\TextInput::make('name')->label('Kategori Adı')->required(),
                         ])
-                        ->searchable(),
+                        ->helperText('Yeni kategori eklemek için listeden "Create" seçeneğini kullanın veya Proje Kategorileri sayfasından yönetin.'),
                     Forms\Components\TextInput::make('location')
                         ->label('Konum')
                         ->placeholder('Sarıyer, İstanbul'),
@@ -126,7 +125,7 @@ class ProjectResource extends Resource
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('cover')
                     ->collection('cover')->label('Kapak'),
                 Tables\Columns\TextColumn::make('title')->label('Proje')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('category')->label('Kategori')->badge(),
+                Tables\Columns\TextColumn::make('projectCategory.name')->label('Kategori')->badge(),
                 Tables\Columns\TextColumn::make('location')->label('Konum')->toggleable(),
                 Tables\Columns\TextColumn::make('status')->label('Durum')->badge()
                     ->formatStateUsing(fn ($state) => $state === 'tamam' ? 'Tamamlandı' : 'Devam Ediyor')
@@ -135,8 +134,8 @@ class ProjectResource extends Resource
                 Tables\Columns\IconColumn::make('published')->label('Yayında')->boolean(),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('category')->label('Kategori')
-                    ->options(['villa' => 'Villa', 'rezidans' => 'Rezidans', 'ticari' => 'Ticari', 'konut' => 'Konut', 'altyapi' => 'Altyapı']),
+                Tables\Filters\SelectFilter::make('project_category_id')->label('Kategori')
+                    ->relationship('projectCategory', 'name'),
                 Tables\Filters\SelectFilter::make('status')->label('Durum')
                     ->options(['devam' => 'Devam Ediyor', 'tamam' => 'Tamamlandı']),
             ])
