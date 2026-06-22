@@ -79,7 +79,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentSpatieRolesPermissionsPlugin::make(),
                 SlidePlugin::make(),
                 GroupPlugin::make(),
-                TagPlugin::make(),
+                // TagPlugin kaldırıldı (kullanılmıyor)
                 CommentPlugin::make(),
                 MenuPlugin::make(),
                 NewsletterPlugin::make(),

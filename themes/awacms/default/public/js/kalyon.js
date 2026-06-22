@@ -7,16 +7,22 @@
 (function () {
   'use strict';
 
-  /* ---- style-hover: elemana hover'da inline stil uygula ---- */
+  /* ---- style-hover: elemana hover'da inline stil uygula ----
+     Base stil HOVER ANINDA dinamik yakalanır; böylece data-reveal'in
+     açtığı opacity/transform gibi değerler korunur (yoksa hover'da
+     eleman tekrar opacity:0 olup "kaybolur"). ---- */
   function initHover() {
     document.querySelectorAll('[style-hover]').forEach(function (el) {
-      var base = el.getAttribute('style') || '';
       var hover = el.getAttribute('style-hover') || '';
       el.addEventListener('mouseenter', function () {
-        el.setAttribute('style', base + ';' + hover);
+        // o anki (hover olmayan) stili sakla, üstüne hover ekle
+        el._kalBase = el.getAttribute('style') || '';
+        el.setAttribute('style', el._kalBase + ';' + hover);
       });
       el.addEventListener('mouseleave', function () {
-        el.setAttribute('style', base);
+        if (el._kalBase !== undefined) {
+          el.setAttribute('style', el._kalBase);
+        }
       });
     });
   }

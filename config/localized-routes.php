@@ -17,7 +17,7 @@ return [
      * If you have a main locale, and you want to omit
      * its slug from the URL, specify it here.
      */
-    'omitted_locale' => null,
+    'omitted_locale' => 'tr',
 
     /**
      * Set this option to true if you want to redirect URLs

@@ -39,9 +39,9 @@
     {{-- KÜNYE ŞERİDİ --}}
     <section style="background:#1C1A17;color:#fff">
         <div class="kal-pad" style="max-width:1340px;margin:0 auto;padding:0 52px">
-            <div class="kal-grid-3" style="display:grid;grid-template-columns:repeat({{ min(count($baseInfo),4) }},1fr);gap:1px;background:rgba(255,255,255,.08)">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(255,255,255,.08)">
                 @foreach($baseInfo as $label => $value)
-                    <div style="background:#1C1A17;padding:28px 26px">
+                    <div style="background:#1C1A17;padding:26px 24px">
                         <div style="font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#E0A488">{{ $label }}</div>
                         <div style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:18px;color:#fff;margin-top:8px">{{ $value }}</div>
                     </div>
